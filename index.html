@@ -34,6 +34,7 @@
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --transition: all 0.35s ease;
+            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -379,11 +380,13 @@
             height: clamp(440px, 56vw, 620px);
             object-fit: cover;
             display: block;
-            transition: opacity 0.45s ease;
+            transition: opacity 0.45s var(--ease-spring), transform 0.65s var(--ease-spring), filter 0.45s ease;
         }
 
         .showcase-card img.is-changing {
             opacity: 0.35;
+            transform: scale(1.025);
+            filter: blur(3px) saturate(0.82);
         }
 
         .floating-badge {
@@ -1425,10 +1428,26 @@
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.85s cubic-bezier(0.17, 0.84, 0.44, 1);
+            filter: blur(4px);
+            transition: opacity 0.85s var(--ease-spring), transform 0.85s var(--ease-spring), filter 0.85s ease;
+            transition-delay: var(--reveal-delay, 0ms);
+            will-change: opacity, transform, filter;
         }
 
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+            will-change: auto;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                filter: none;
+                transition: opacity 0.2s ease;
+                transform: none;
+            }
+        }
 
         @media (max-width: 980px) {
             .hero-grid, .story-grid, .testimonial-grid, .packaging-grid {
@@ -2773,6 +2792,85 @@
             font-size: 0.78rem;
         }
 
+        /* Warm welcome treatment for the first viewport. */
+        :root {
+            --color-bg: #fbf3eb;
+            --color-bg-2: #f4e1d4;
+            --color-terracotta: #c86f53;
+            --color-terracotta-deep: #ae5944;
+            --color-gold: #d9b16d;
+            --color-rose: #f1d8ca;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 12% 8%, rgba(235, 175, 127, 0.22), transparent 27%),
+                radial-gradient(circle at 88% 18%, rgba(222, 143, 112, 0.16), transparent 25%),
+                linear-gradient(180deg, var(--color-bg) 0%, #fffaf6 100%);
+        }
+
+        .hero {
+            background:
+                radial-gradient(circle at 18% 24%, rgba(235, 175, 127, 0.28), transparent 30%),
+                radial-gradient(circle at 84% 12%, rgba(216, 171, 103, 0.2), transparent 26%),
+                linear-gradient(135deg, rgba(255,255,255,0.42), rgba(244,225,212,0.7));
+        }
+
+        @keyframes welcome-rise {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes welcome-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(217,177,109,0.18); }
+            50% { box-shadow: 0 0 0 8px rgba(217,177,109,0.08); }
+        }
+
+        @keyframes warm-sheen {
+            from { transform: translateX(-120%) rotate(12deg); }
+            to { transform: translateX(140%) rotate(12deg); }
+        }
+
+        .hero-grid > div:first-child > * {
+            animation: welcome-rise 0.85s var(--ease-spring) both;
+        }
+
+        .hero-grid > div:first-child > :nth-child(1) { animation-delay: 0.08s; }
+        .hero-grid > div:first-child > :nth-child(2) { animation-delay: 0.18s; }
+        .hero-grid > div:first-child > :nth-child(3) { animation-delay: 0.28s; }
+        .hero-grid > div:first-child > :nth-child(4) { animation-delay: 0.4s; }
+
+        .eyebrow {
+            animation: welcome-glow 3.8s ease-in-out infinite;
+        }
+
+        .showcase-card::after {
+            content: "";
+            position: absolute;
+            inset: -20% auto -20% -35%;
+            width: 24%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.26), transparent);
+            transform: rotate(12deg);
+            pointer-events: none;
+            animation: warm-sheen 7s ease-in-out infinite;
+        }
+
+        .btn-primary {
+            box-shadow: 0 18px 28px rgba(200,111,83,0.25), 0 0 0 0 rgba(200,111,83,0.16);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 22px 38px rgba(200,111,83,0.32), 0 0 0 7px rgba(200,111,83,0.08);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-grid > div:first-child > *,
+            .eyebrow,
+            .showcase-card::after {
+                animation: none;
+            }
+        }
+
         @media (max-width: 980px) {
             #builder .summary-panel {
                 border-top-color: rgba(33,27,24,0.14);
@@ -3533,13 +3631,13 @@
         }
 
         const header = document.getElementById('main-header');
+        let headerIsScrolled = false;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                header.style.boxShadow = '0 10px 25px rgba(46, 37, 34, 0.06)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
-        });
+            const nextHeaderState = window.scrollY > 20;
+            if (nextHeaderState === headerIsScrolled) return;
+            headerIsScrolled = nextHeaderState;
+            header.style.boxShadow = headerIsScrolled ? '0 10px 25px rgba(46, 37, 34, 0.06)' : 'none';
+        }, { passive: true });
 
         const revealItems = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
@@ -3551,21 +3649,33 @@
             });
         }, { threshold: 0.12 });
 
-        revealItems.forEach((item) => observer.observe(item));
+        revealItems.forEach((item, index) => {
+            item.style.setProperty('--reveal-delay', `${(index % 4) * 70}ms`);
+            observer.observe(item);
+        });
 
         const heroVisualFrame = document.querySelector('.hero-visual .visual-frame');
         if (heroVisualFrame) {
+            let heroPointerFrame = 0;
+            let pointerX = 0;
+            let pointerY = 0;
             document.addEventListener('pointermove', (event) => {
-                const x = (event.clientX / window.innerWidth - 0.5) * 14;
-                const y = (event.clientY / window.innerHeight - 0.5) * 14;
-                heroVisualFrame.style.transform = `perspective(1500px) rotateX(${(-y).toFixed(2)}deg) rotateY(${x.toFixed(2)}deg) translateY(-6px)`;
-            });
+                if (event.pointerType === 'touch') return;
+                pointerX = (event.clientX / window.innerWidth - 0.5) * 14;
+                pointerY = (event.clientY / window.innerHeight - 0.5) * 14;
+                if (heroPointerFrame) return;
+                heroPointerFrame = window.requestAnimationFrame(() => {
+                    heroVisualFrame.style.transform = `perspective(1500px) rotateX(${(-pointerY).toFixed(2)}deg) rotateY(${pointerX.toFixed(2)}deg) translateY(-6px)`;
+                    heroPointerFrame = 0;
+                });
+            }, { passive: true });
         }
 
         const heroHamperImage = document.getElementById('hero-hamper-image');
         const heroHamperName = document.getElementById('hero-hamper-name');
         const heroHamperDescription = document.getElementById('hero-hamper-description');
         const heroHamperOrder = document.getElementById('hero-hamper-order');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const hamperSlides = [
             { image: 'Spicy Masala Berries.jpeg', name: 'Spicy Masala Berries', description: 'Tangy, sweet, and lightly spiced with festive energy.' },
             { image: 'Biscotti.jpeg', name: 'Biscotti Crisps', description: 'Crunchy, golden, and perfect for gifting moments.' },
@@ -3583,7 +3693,7 @@
         ];
 
         let heroImageIndex = 0;
-        setInterval(() => {
+        const rotateHeroImage = () => {
             if (!heroHamperImage || !heroHamperName || !heroHamperDescription || !heroHamperOrder) return;
 
             heroHamperImage.classList.add('is-changing');
@@ -3597,17 +3707,31 @@
                 heroHamperOrder.href = `https://wa.me/917705982880?text=${encodeURIComponent(`Hi! I would like to order ${slide.name}`)}`;
                 heroHamperImage.classList.remove('is-changing');
             }, 450);
-        }, 4000);
+        };
+        let heroTimer = prefersReducedMotion ? 0 : window.setInterval(rotateHeroImage, 4000);
+        document.addEventListener('visibilitychange', () => {
+            window.clearInterval(heroTimer);
+            if (!document.hidden && !prefersReducedMotion) heroTimer = window.setInterval(rotateHeroImage, 4000);
+        });
 
         document.querySelectorAll('.product-card, .benefit-card, .testimonial').forEach((card) => {
+            let cardPointerFrame = 0;
+            let cardPointerX = 50;
+            let cardPointerY = 50;
             card.addEventListener('mousemove', (event) => {
                 const rect = card.getBoundingClientRect();
-                const x = ((event.clientX - rect.left) / rect.width) * 100;
-                const y = ((event.clientY - rect.top) / rect.height) * 100;
-                card.style.transform = `perspective(1200px) rotateX(${(50 - y) / 22}deg) rotateY(${(x - 50) / 22}deg) translateY(-4px)`;
+                cardPointerX = ((event.clientX - rect.left) / rect.width) * 100;
+                cardPointerY = ((event.clientY - rect.top) / rect.height) * 100;
+                if (cardPointerFrame) return;
+                cardPointerFrame = window.requestAnimationFrame(() => {
+                    card.style.transform = `perspective(1200px) rotateX(${(50 - cardPointerY) / 22}deg) rotateY(${(cardPointerX - 50) / 22}deg) translateY(-4px)`;
+                    cardPointerFrame = 0;
+                });
             });
 
             card.addEventListener('mouseleave', () => {
+                if (cardPointerFrame) window.cancelAnimationFrame(cardPointerFrame);
+                cardPointerFrame = 0;
                 card.style.transform = '';
             });
         });
@@ -3620,6 +3744,7 @@
         let galleryIndex = 1;
         let galleryTimer;
         let galleryTouchStart = 0;
+        let galleryIsVisible = true;
 
         if (galleryTrack && gallerySlideCount > 1) {
             const firstClone = gallerySlides[0].cloneNode(true);
@@ -3653,10 +3778,21 @@
 
         const restartGalleryTimer = () => {
             window.clearInterval(galleryTimer);
+            if (!galleryIsVisible || document.hidden || prefersReducedMotion) return;
             galleryTimer = window.setInterval(() => updateGallery(galleryIndex + 1), 5000);
         };
 
         if (galleryTrack && galleryDots && gallerySlideCount) {
+            const galleryVisibilityObserver = new IntersectionObserver(([entry]) => {
+                galleryIsVisible = entry.isIntersecting;
+                if (galleryIsVisible) {
+                    restartGalleryTimer();
+                } else {
+                    window.clearInterval(galleryTimer);
+                }
+            }, { threshold: 0.15 });
+            galleryVisibilityObserver.observe(galleryTrack.parentElement);
+
             gallerySlides.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.className = `gallery-dot${index === 0 ? ' active' : ''}`;
@@ -3697,6 +3833,7 @@
             window.addEventListener('resize', () => updateGallery(galleryIndex));
             galleryTrack.parentElement.addEventListener('mouseenter', () => window.clearInterval(galleryTimer));
             galleryTrack.parentElement.addEventListener('mouseleave', restartGalleryTimer);
+            document.addEventListener('visibilitychange', restartGalleryTimer);
             galleryTrack.parentElement.addEventListener('keydown', (event) => {
                 if (event.key === 'ArrowLeft') {
                     updateGallery(galleryIndex - 1);
