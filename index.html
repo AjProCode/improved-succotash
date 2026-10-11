@@ -3270,25 +3270,47 @@
 
         if (siteAudio && audioToggle) {
             siteAudio.volume = 0.12;
+            siteAudio.currentTime = 2;
+
+            const syncAudioButton = (isPlaying) => {
+                audioToggle.textContent = isPlaying ? '♫ Pause music' : '♫ Play music';
+                audioToggle.setAttribute('aria-pressed', String(isPlaying));
+            };
+
+            const startAudio = (event) => {
+                if (event.target instanceof Element && event.target.closest('#audio-toggle')) return;
+
+                if (!siteAudio.paused && !siteAudio.muted) {
+                    syncAudioButton(true);
+                    return;
+                }
+
+                siteAudio.currentTime = 2;
+                siteAudio.play().then(() => {
+                    syncAudioButton(true);
+                }).catch(() => {
+                    syncAudioButton(false);
+                });
+            };
+
             siteAudio.play().then(() => {
-                audioToggle.textContent = '♫ Pause music';
-                audioToggle.setAttribute('aria-pressed', 'true');
+                syncAudioButton(true);
             }).catch(() => {
-                audioToggle.textContent = '♫ Play music';
-                audioToggle.setAttribute('aria-pressed', 'false');
+                syncAudioButton(false);
+            });
+
+            ['pointerdown', 'touchstart', 'keydown'].forEach((eventName) => {
+                window.addEventListener(eventName, startAudio, { once: true, passive: eventName !== 'keydown' });
             });
 
             audioToggle.addEventListener('click', async () => {
                 if (siteAudio.paused || siteAudio.muted) {
-                    siteAudio.muted = false;
-                    siteAudio.volume = 0.12;
+                    siteAudio.currentTime = 2;
                     await siteAudio.play();
-                    audioToggle.textContent = '♫ Pause music';
-                    audioToggle.setAttribute('aria-pressed', 'true');
+                    syncAudioButton(true);
                 } else {
                     siteAudio.pause();
-                    audioToggle.textContent = '♫ Play music';
-                    audioToggle.setAttribute('aria-pressed', 'false');
+                    syncAudioButton(false);
                 }
             });
         }
