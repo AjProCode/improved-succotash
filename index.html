@@ -1938,6 +1938,220 @@
                 height: 250px;
             }
         }
+
+        /* Let the hamper builder share the page grid instead of floating in cards. */
+        #builder {
+            position: relative;
+            overflow: hidden;
+            background-color: #463640;
+            background-image:
+                linear-gradient(rgba(248,240,229,0.11) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.11) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        #builder::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 80% 20%, rgba(210,189,138,0.18), transparent 28rem);
+        }
+
+        #builder > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hamper-builder {
+            grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: start;
+        }
+
+        .hamper-panel,
+        .summary-panel {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .builder-label {
+            color: #e1c994;
+            margin-bottom: 1rem;
+        }
+
+        .hamper-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+            margin-top: 0;
+        }
+
+        .hamper-item {
+            min-width: 0;
+            grid-template-columns: 52px minmax(0, 1fr);
+            gap: 0.7rem;
+            padding: 0.7rem;
+            background: rgba(255,253,251,0.06);
+            border: 1px solid rgba(248,240,229,0.2);
+            border-radius: 12px;
+            color: #fffaf2;
+        }
+
+        .hamper-item:hover {
+            background: rgba(255,253,251,0.12);
+            border-color: rgba(225,201,148,0.72);
+            box-shadow: none;
+        }
+
+        .hamper-item.selected {
+            background: rgba(210,189,138,0.18);
+            border-color: #d2bd8a;
+        }
+
+        .hamper-item img {
+            width: 52px;
+            height: 52px;
+            border-radius: 9px;
+        }
+
+        .hamper-item h4 {
+            font-size: 0.92rem;
+            line-height: 1.15;
+            color: #fffaf2;
+        }
+
+        .hamper-item p {
+            color: rgba(255,250,242,0.68);
+            font-size: 0.62rem;
+            line-height: 1.35;
+            letter-spacing: 0.05em;
+        }
+
+        .hamper-item .tag {
+            grid-column: 2;
+            justify-self: start;
+            min-width: 0;
+            padding: 0;
+            background: transparent;
+            color: #e1c994;
+            font-size: 0.72rem;
+        }
+
+        .summary-panel {
+            position: sticky;
+            top: 7rem;
+            padding-left: clamp(1.5rem, 3vw, 3rem);
+            border-left: 1px solid rgba(248,240,229,0.2);
+        }
+
+        .summary-heading {
+            color: #fffaf2;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+        }
+
+        .selected-items {
+            gap: 0.35rem;
+            margin: 1.2rem 0;
+        }
+
+        .selected-item {
+            padding: 0.65rem 0;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(248,240,229,0.14);
+            background: transparent;
+            color: #fffaf2;
+        }
+
+        .selected-label { font-size: 0.84rem; }
+        .selected-item strong { color: #f1dfb6; }
+        .selected-dot {
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 0 5px rgba(210,189,138,0.14);
+        }
+
+        .packaging-charge {
+            border: 0;
+            border-bottom: 1px solid rgba(248,240,229,0.14);
+            background: transparent;
+        }
+
+        .summary-total {
+            border-top: 1px solid rgba(248,240,229,0.3);
+            border-bottom: 1px solid rgba(248,240,229,0.14);
+            padding: 1rem 0;
+            margin-top: 1.2rem;
+            color: #fffaf2;
+        }
+
+        .summary-total strong {
+            color: #f1dfb6;
+        }
+
+        .builder-packaging-info {
+            margin-top: 1.1rem;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .builder-packaging-info p {
+            color: rgba(255,250,242,0.68);
+            font-size: 0.76rem;
+        }
+
+        @media (max-width: 980px) {
+            .hamper-builder {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hamper-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .summary-panel {
+                position: static;
+                padding: 1.5rem 0 0;
+                border-left: 0;
+                border-top: 1px solid rgba(248,240,229,0.2);
+            }
+        }
+
+        @media (max-width: 560px) {
+            #builder {
+                background-size: 32px 32px;
+            }
+
+            .hamper-grid {
+                grid-template-columns: 1fr;
+                gap: 0.7rem;
+            }
+
+            .hamper-item {
+                grid-template-columns: 58px minmax(0, 1fr) auto;
+                align-items: center;
+            }
+
+            .hamper-item img {
+                width: 58px;
+                height: 58px;
+            }
+
+            .hamper-item .tag {
+                grid-column: auto;
+                grid-row: 1;
+                justify-self: end;
+            }
+
+            .summary-panel {
+                padding-top: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
