@@ -2397,6 +2397,106 @@
                 margin-bottom: 1rem;
             }
         }
+
+        /* Coordinated texture and motion for the darker brand surfaces. */
+        @keyframes ambient-drift {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(1.5%, -1%, 0) scale(1.04); }
+        }
+
+        @keyframes soft-pulse {
+            0%, 100% { opacity: 0.42; }
+            50% { opacity: 0.72; }
+        }
+
+        body::before {
+            opacity: 0.12;
+            background-image:
+                linear-gradient(rgba(70,54,64,0.13) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(70,54,64,0.13) 1px, transparent 1px);
+            background-size: 46px 46px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.45;
+            background-image:
+                linear-gradient(rgba(70,54,64,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(70,54,64,0.08) 1px, transparent 1px);
+            background-size: 54px 54px;
+            mask-image: linear-gradient(120deg, black, transparent 72%);
+            animation: soft-pulse 8s ease-in-out infinite;
+        }
+
+        .visual-frame {
+            background-color: #463640;
+            background-image:
+                linear-gradient(rgba(248,240,229,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.1) 1px, transparent 1px);
+            background-size: 34px 34px;
+        }
+
+        #builder {
+            background-image:
+                linear-gradient(rgba(248,240,229,0.14) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.14) 1px, transparent 1px);
+        }
+
+        .gallery-lookbook {
+            background-color: #463640;
+            background-image:
+                linear-gradient(rgba(248,240,229,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.1) 1px, transparent 1px);
+            background-size: 38px 38px;
+        }
+
+        footer {
+            background-color: #332a31;
+            background-image:
+                linear-gradient(rgba(248,240,229,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.08) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        .hero-visual,
+        .gallery-lookbook,
+        .cta-banner {
+            animation: ambient-drift 12s ease-in-out infinite;
+        }
+
+        .product-card,
+        .benefit-card,
+        .package-card,
+        .testimonial {
+            transition:
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.55s ease,
+                border-color 0.55s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero::before,
+            .hero-visual,
+            .gallery-lookbook,
+            .cta-banner {
+                animation: none;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero::before {
+                background-size: 38px 38px;
+            }
+
+            .visual-frame,
+            .gallery-lookbook,
+            footer {
+                background-size: 30px 30px;
+            }
+        }
     </style>
 </head>
 <body>
