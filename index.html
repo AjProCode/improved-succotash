@@ -2528,6 +2528,59 @@
             transform: translateY(-2px);
         }
 
+        .audio-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: grid;
+            place-items: center;
+            align-content: center;
+            gap: 1.4rem;
+            padding: 2rem;
+            background:
+                radial-gradient(circle at center, rgba(128,93,104,0.22), transparent 34%),
+                #332a31;
+            color: #fffaf2;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 0.55s ease, visibility 0.55s ease;
+        }
+
+        .audio-gate.is-dismissed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .audio-gate img {
+            width: min(150px, 34vw);
+            height: min(150px, 34vw);
+            object-fit: contain;
+            animation: gate-logo-bounce 2.4s ease-in-out infinite;
+        }
+
+        .audio-gate h1 {
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            color: #f1dfb6;
+        }
+
+        .audio-gate p {
+            color: rgba(255,250,242,0.78);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        @keyframes gate-logo-bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-14px) scale(1.04); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .audio-gate img { animation: none; }
+        }
+
         @media (max-width: 720px) {
             .audio-toggle {
                 right: 16px;
@@ -3257,6 +3310,12 @@
         </svg>
     </a>
 
+    <div id="audio-gate" class="audio-gate" role="dialog" aria-modal="true" aria-label="Enter Bake Me A Wish">
+        <img src="logo.png" alt="Bake Me A Wish logo">
+        <h1>Diwali Treats</h1>
+        <p>Click anywhere to enter</p>
+    </div>
+
     <audio id="site-audio" autoplay loop preload="auto">
         <source src="HappyDiwaliAudio.mp3" type="audio/mpeg">
     </audio>
@@ -3267,8 +3326,9 @@
     <script>
         const siteAudio = document.getElementById('site-audio');
         const audioToggle = document.getElementById('audio-toggle');
+        const audioGate = document.getElementById('audio-gate');
 
-        if (siteAudio && audioToggle) {
+        if (siteAudio && audioToggle && audioGate) {
             siteAudio.volume = 0.12;
             siteAudio.currentTime = 2;
 
@@ -3292,6 +3352,11 @@
                     syncAudioButton(false);
                 });
             };
+
+            audioGate.addEventListener('click', (event) => {
+                audioGate.classList.add('is-dismissed');
+                startAudio(event);
+            }, { once: true });
 
             siteAudio.play().then(() => {
                 syncAudioButton(true);
