@@ -218,7 +218,7 @@
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
-            gap: 2.5rem;
+            gap: clamp(2rem, 5vw, 5rem);
             position: relative;
             z-index: 1;
         }
@@ -249,7 +249,7 @@
         }
 
         .hero-title {
-            font-size: clamp(3.4rem, 5vw, 6rem);
+            font-size: clamp(3.2rem, 5vw, 5.8rem);
             line-height: 0.95;
             margin-bottom: 1.3rem;
             max-width: 560px;
@@ -353,6 +353,7 @@
             position: relative;
             display: flex;
             justify-content: center;
+            width: 100%;
             animation: floaty 6s ease-in-out infinite;
         }
 
@@ -379,7 +380,7 @@
 
         .visual-frame {
             position: relative;
-            width: min(100%, 520px);
+            width: min(100%, 500px);
             padding: 1rem;
             border-radius: 36px;
             background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(244,239,233,0.62));
@@ -400,7 +401,7 @@
 
         .showcase-card img {
             width: 100%;
-            height: 620px;
+            height: clamp(440px, 56vw, 620px);
             object-fit: cover;
             display: block;
             transition: opacity 0.45s ease;
@@ -439,7 +440,7 @@
             position: absolute;
             right: 1.4rem;
             bottom: 1.4rem;
-            width: min(270px, 72%);
+            width: min(290px, 78%);
             background: rgba(255,255,255,0.8);
             backdrop-filter: blur(14px);
             border: 1px solid rgba(46, 37, 34, 0.05);
@@ -460,6 +461,7 @@
         .mini-card h3 {
             font-size: clamp(1.5rem, 2vw, 2rem);
             margin-bottom: 0.35rem;
+            min-height: 2.4em;
         }
 
         .mini-card p {
@@ -471,14 +473,8 @@
         .mini-footer {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             gap: 1rem;
-        }
-
-        .mini-price {
-            font-family: var(--font-heading);
-            font-size: 1.45rem;
-            color: var(--color-terracotta);
         }
 
         .mini-order {
@@ -533,7 +529,7 @@
         }
 
         .section-wrap {
-            padding: 6rem 0;
+            padding: clamp(4.5rem, 8vw, 7rem) 0;
         }
 
         .section-head {
@@ -567,7 +563,7 @@
             display: grid;
             grid-template-columns: repeat(12, minmax(0, 1fr));
             gap: 1.15rem;
-            align-items: start;
+            align-items: stretch;
         }
 
         .collection-marker {
@@ -599,6 +595,8 @@
             box-shadow: var(--shadow-soft);
             transition: var(--transition);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:first-child {
@@ -682,6 +680,9 @@
 
         .product-content {
             padding: 1.2rem 1.2rem 1.4rem;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
         }
 
         .product-meta {
@@ -711,6 +712,7 @@
             gap: 1rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(46, 37, 34, 0.08);
+            margin-top: auto;
         }
 
         .product-price {
@@ -730,7 +732,7 @@
         .story-grid {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 2rem;
+            gap: clamp(1.5rem, 4vw, 3.5rem);
             align-items: center;
         }
 
@@ -914,6 +916,7 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.2rem;
+            align-items: stretch;
         }
 
         .package-card {
@@ -923,6 +926,8 @@
             overflow: hidden;
             box-shadow: var(--shadow-soft);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .package-card:hover {
@@ -940,6 +945,7 @@
             padding: 1rem 1rem 1.2rem;
             font-weight: 600;
             color: var(--color-text-soft);
+            flex: 1;
         }
 
         .packaging-info {
@@ -967,7 +973,7 @@
         .hamper-builder {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 1.5rem;
+            gap: clamp(1.25rem, 3vw, 2rem);
             align-items: stretch;
         }
 
@@ -977,6 +983,7 @@
             border-radius: 28px;
             box-shadow: var(--shadow-soft);
             padding: 1.5rem;
+            height: 100%;
         }
 
         .hamper-grid {
@@ -1267,6 +1274,21 @@
             .product-card:first-child { grid-column: span 1; }
             .product-card:nth-child(3n + 2) { transform: none; }
             .collection-marker { margin-right: 0; }
+            .section-wrap { padding: 4.25rem 0; }
+            .section-head { margin-bottom: 2rem; }
+            .story-visual { min-height: 390px; }
+            .story-copy, .hamper-panel, .summary-panel { padding: 1.2rem; }
+            .hamper-grid { grid-template-columns: 1fr; }
+            .package-card img { height: 260px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -1327,11 +1349,10 @@
                             <img id="hero-hamper-image" src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Festive hamper packaging design">
                             <div class="mini-card">
                                 <div class="mini-tag">Festive hamper</div>
-                                <h3>Diwali Glow Box</h3>
-                                <p>Signature bites, gifting notes, and golden packaging.</p>
+                                <h3 id="hero-hamper-name">Diwali Glow Box</h3>
+                                <p id="hero-hamper-description">Signature bites, gifting notes, and golden packaging.</p>
                                 <div class="mini-footer">
-                                    <span class="mini-price">₹1,999</span>
-                                    <a href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20order%20the%20Diwali%20Glow%20Box" class="mini-order" target="_blank" rel="noopener noreferrer">Order</a>
+                                    <a id="hero-hamper-order" href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20order%20the%20Diwali%20Glow%20Box" class="mini-order" target="_blank" rel="noopener noreferrer">Enquire</a>
                                 </div>
                             </div>
                         </div>
@@ -1373,7 +1394,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">New</span>
-                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Spicy Masala Berries">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Spicy Masala Berries">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">125 grams</div>
@@ -1389,7 +1410,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Classic</span>
-                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Biscotti Crisps">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg" alt="Biscotti Crisps">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">125 grams</div>
@@ -1405,7 +1426,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Popular</span>
-                            <img src="https://images.unsplash.com/photo-1499636136210-6d10c4e7a1c3?auto=format&fit=crop&w=900&q=80" alt="Italian Makhana Mix">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg" alt="Italian Makhana Mix">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">125 grams</div>
@@ -1421,7 +1442,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Limited</span>
-                            <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80" alt="Date and Fig Barfis">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg" alt="Date and Fig Barfis">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">150 grams</div>
@@ -1437,7 +1458,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Favourites</span>
-                            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80" alt="Quinoa Almond Rocks">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg" alt="Quinoa Almond Rocks">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">150 grams</div>
@@ -1453,7 +1474,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Wellness</span>
-                            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80" alt="Bombay Cocktail Mix">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg" alt="Bombay Cocktail Mix">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">125 grams</div>
@@ -1469,7 +1490,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Traditional</span>
-                            <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=900&q=80" alt="Kaju Puri">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Kaju Puri">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">4 pieces · 150 grams</div>
@@ -1485,7 +1506,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Baked</span>
-                            <img src="https://images.unsplash.com/photo-1499636136210-6d10c4e7a1c3?auto=format&fit=crop&w=900&q=80" alt="Cinnamon Sugar Cookies">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg" alt="Cinnamon Sugar Cookies">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">150 grams</div>
@@ -1501,7 +1522,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Indulgent</span>
-                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Chocolate Orange Bark">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg" alt="Chocolate Orange Bark">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">100 grams</div>
@@ -1517,7 +1538,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Classic</span>
-                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Nan Khatai">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg" alt="Nan Khatai">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">150 grams</div>
@@ -1533,7 +1554,7 @@
                     <article class="product-card reveal">
                         <div class="product-media">
                             <span class="product-badge">Wholesome</span>
-                            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80" alt="Seed Affair">
+                            <img src="WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg" alt="Seed Affair">
                         </div>
                         <div class="product-content">
                             <div class="product-meta">125 grams</div>
@@ -1805,24 +1826,55 @@
         }
 
         const heroHamperImage = document.getElementById('hero-hamper-image');
-        const hamperImages = [
-            'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg',
-            'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg',
-            'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg',
-            'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg',
-            'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg',
-            'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg'
+        const heroHamperName = document.getElementById('hero-hamper-name');
+        const heroHamperDescription = document.getElementById('hero-hamper-description');
+        const heroHamperOrder = document.getElementById('hero-hamper-order');
+        const hamperSlides = [
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg',
+                name: 'Diwali Glow Box',
+                description: 'Signature bites, gifting notes, and golden packaging.'
+            },
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg',
+                name: 'Royal Celebration Hamper',
+                description: 'A polished festive selection made for sharing.'
+            },
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg',
+                name: 'Marigold Moments Box',
+                description: 'Bright festive flavours wrapped for thoughtful gifting.'
+            },
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg',
+                name: 'Golden Indulgence Hamper',
+                description: 'A warm, celebratory assortment with a luxe finish.'
+            },
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg',
+                name: 'Festive Treats Collection',
+                description: 'Handcrafted favourites for hosts, families, and friends.'
+            },
+            {
+                image: 'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg',
+                name: 'Luxe Mithai Hamper',
+                description: 'A graceful festive presentation for special moments.'
+            }
         ];
 
         let heroImageIndex = 0;
         setInterval(() => {
-            if (!heroHamperImage) return;
+            if (!heroHamperImage || !heroHamperName || !heroHamperDescription || !heroHamperOrder) return;
 
             heroHamperImage.classList.add('is-changing');
             window.setTimeout(() => {
-                heroImageIndex = (heroImageIndex + 1) % hamperImages.length;
-                heroHamperImage.src = hamperImages[heroImageIndex];
+                heroImageIndex = (heroImageIndex + 1) % hamperSlides.length;
+                const slide = hamperSlides[heroImageIndex];
+                heroHamperImage.src = slide.image;
+                heroHamperName.textContent = slide.name;
+                heroHamperDescription.textContent = slide.description;
                 heroHamperImage.alt = `Festive hamper packaging design ${heroImageIndex + 1}`;
+                heroHamperOrder.href = `https://wa.me/917705982880?text=${encodeURIComponent(`Hi! I would like to enquire about the ${slide.name}`)}`;
                 heroHamperImage.classList.remove('is-changing');
             }, 450);
         }, 4000);
@@ -1841,17 +1893,17 @@
         });
 
         const hamperCatalog = [
-            { id: 'masala', name: 'Spicy Masala Berries', size: '125 grams', price: 250, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80', tag: 'New' },
-            { id: 'biscotti', name: 'Biscotti Crisps', size: '125 grams', price: 250, image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80', tag: 'Classic' },
-            { id: 'makhana', name: 'Italian Makhana Mix', size: '125 grams', price: 250, image: 'https://images.unsplash.com/photo-1499636136210-6d10c4e7a1c3?auto=format&fit=crop&w=600&q=80', tag: 'Popular' },
-            { id: 'barfi', name: 'Date and Fig Barfis', size: '150 grams', price: 250, image: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80', tag: 'Limited' },
-            { id: 'quinoa', name: 'Quinoa Almond Rocks', size: '150 grams', price: 250, image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80', tag: 'Fave' },
-            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=600&q=80', tag: 'Wellness' },
-            { id: 'kaju-puri', name: 'Kaju Puri', size: '4 pieces · 150 grams', price: 150, image: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80', tag: 'Traditional' },
-            { id: 'cinnamon-cookies', name: 'Cinnamon Sugar Cookies', size: '150 grams', price: 180, image: 'https://images.unsplash.com/photo-1499636136210-6d10c4e7a1c3?auto=format&fit=crop&w=600&q=80', tag: 'Baked' },
-            { id: 'chocolate-orange-bark', name: 'Chocolate Orange Bark', size: '100 grams', price: 300, image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80', tag: 'Indulgent' },
-            { id: 'nan-khatai', name: 'Nan Khatai', size: '150 grams', price: 180, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80', tag: 'Classic' },
-            { id: 'seed-affair', name: 'Seed Affair', size: '125 grams', price: 250, image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80', tag: 'Wholesome' }
+            { id: 'masala', name: 'Spicy Masala Berries', size: '125 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg', tag: 'New' },
+            { id: 'biscotti', name: 'Biscotti Crisps', size: '125 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg', tag: 'Classic' },
+            { id: 'makhana', name: 'Italian Makhana Mix', size: '125 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg', tag: 'Popular' },
+            { id: 'barfi', name: 'Date and Fig Barfis', size: '150 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg', tag: 'Limited' },
+            { id: 'quinoa', name: 'Quinoa Almond Rocks', size: '150 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg', tag: 'Fave' },
+            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg', tag: 'Wellness' },
+            { id: 'kaju-puri', name: 'Kaju Puri', size: '4 pieces · 150 grams', price: 150, image: 'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg', tag: 'Traditional' },
+            { id: 'cinnamon-cookies', name: 'Cinnamon Sugar Cookies', size: '150 grams', price: 180, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg', tag: 'Baked' },
+            { id: 'chocolate-orange-bark', name: 'Chocolate Orange Bark', size: '100 grams', price: 300, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg', tag: 'Indulgent' },
+            { id: 'nan-khatai', name: 'Nan Khatai', size: '150 grams', price: 180, image: 'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg', tag: 'Classic' },
+            { id: 'seed-affair', name: 'Seed Affair', size: '125 grams', price: 250, image: 'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg', tag: 'Wholesome' }
         ];
 
         const selectedItems = new Map([
