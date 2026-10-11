@@ -26,8 +26,8 @@
             --color-gold-deep: #c3a45e;
             --color-rose: #ebddd5;
             --color-border: rgba(46, 37, 34, 0.08);
-            --shadow-soft: 0 16px 40px rgba(46, 37, 34, 0.08);
-            --shadow-card: 0 20px 45px rgba(201, 119, 98, 0.12);
+            --shadow-soft: 0 16px 40px rgba(46, 37, 34, 0.07);
+            --shadow-card: 0 22px 52px rgba(201, 119, 98, 0.14);
             --radius-lg: 28px;
             --radius-md: 18px;
             --radius-sm: 12px;
@@ -82,7 +82,7 @@
         img { max-width: 100%; display: block; }
 
         .section-shell {
-            width: min(1240px, calc(100% - 32px));
+            width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
         }
 
@@ -100,9 +100,9 @@
         }
 
         .header-inner {
-            width: min(1240px, calc(100% - 32px));
+            width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
-            padding: 1.1rem 0;
+            padding: 0.9rem 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -176,7 +176,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: clamp(0.9rem, 2vw, 1.65rem);
         }
 
         .nav-links a {
@@ -195,7 +195,7 @@
             min-height: 100vh;
             display: grid;
             place-items: center;
-            padding: 9rem 0 4rem;
+            padding: 8.5rem 0 5.5rem;
             overflow: hidden;
             background:
                 radial-gradient(circle at 20% 20%, rgba(215, 185, 128, 0.24), transparent 30%),
@@ -213,12 +213,12 @@
         }
 
         .hero-grid {
-            width: min(1240px, calc(100% - 32px));
+            width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
-            gap: clamp(2rem, 5vw, 5rem);
+            gap: clamp(2rem, 5vw, 6rem);
             position: relative;
             z-index: 1;
         }
@@ -273,7 +273,7 @@
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 2.25rem;
+            margin-top: 2.1rem;
         }
 
         .btn-primary, .btn-secondary {
@@ -322,31 +322,6 @@
             background: white;
             border-color: rgba(201, 119, 98, 0.25);
             transform: translateY(-2px);
-        }
-
-        .hero-stats {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-stats div {
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-
-        .hero-stats strong {
-            font-size: 1.4rem;
-            font-family: var(--font-heading);
-        }
-
-        .hero-stats span {
-            font-size: 0.76rem;
-            color: var(--color-text-soft);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
         }
 
         .hero-visual {
@@ -487,14 +462,16 @@
 
         .benefits {
             position: relative;
-            padding: 1rem 0 2rem;
+            padding: 0 0 2.5rem;
+            margin-top: -1.5rem;
+            z-index: 2;
         }
 
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.6rem;
-            width: min(1240px, calc(100% - 32px));
+            gap: 1rem;
+            width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
         }
 
@@ -502,7 +479,8 @@
             background: rgba(255,255,255,0.66);
             border: 1px solid rgba(46, 37, 34, 0.06);
             border-radius: var(--radius-md);
-            padding: 1.6rem 1.3rem;
+            padding: 1.35rem 1.3rem;
+            backdrop-filter: blur(12px);
             box-shadow: var(--shadow-soft);
         }
 
@@ -532,9 +510,19 @@
             padding: clamp(4.5rem, 8vw, 7rem) 0;
         }
 
+        #products,
+        #builder {
+            background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(241,231,223,0.28));
+        }
+
+        #story {
+            background: linear-gradient(180deg, rgba(215,185,128,0.08), rgba(255,255,255,0));
+        }
+
         .section-head {
             text-align: center;
-            margin-bottom: 2.5rem;
+            width: min(760px, calc(100% - 40px));
+            margin: 0 auto 2.7rem;
         }
 
         .section-tag {
@@ -562,14 +550,14 @@
         .products-grid {
             display: grid;
             grid-template-columns: repeat(12, minmax(0, 1fr));
-            gap: 1.15rem;
+            gap: 1.25rem;
             align-items: stretch;
         }
 
         .collection-marker {
             width: 108px;
             height: 108px;
-            margin: 0 0 1.8rem auto;
+            margin: 0 0 1.4rem auto;
             border: 1px solid rgba(195, 164, 94, 0.5);
             border-radius: 50%;
             display: grid;
@@ -590,7 +578,7 @@
             grid-column: span 3;
             background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.62));
             border: 1px solid rgba(46, 37, 34, 0.06);
-            border-radius: 18px;
+            border-radius: 24px;
             overflow: hidden;
             box-shadow: var(--shadow-soft);
             transition: var(--transition);
@@ -605,14 +593,6 @@
 
         .product-card:first-child .product-media img {
             height: 360px;
-        }
-
-        .product-card:nth-child(3n + 2) {
-            transform: translateY(14px);
-        }
-
-        .product-card:nth-child(3n + 2):hover {
-            transform: translateY(4px) rotateX(2deg);
         }
 
         .product-card::before {
@@ -658,10 +638,6 @@
         }
 
         .product-card:hover .product-media img { transform: scale(1.06); }
-
-        .product-card:hover {
-            transform: translateY(-10px) rotateX(2deg);
-        }
 
         .product-badge {
             position: absolute;
@@ -770,7 +746,7 @@
             background: rgba(255,255,255,0.62);
             border: 1px solid rgba(46, 37, 34, 0.06);
             border-radius: 28px;
-            padding: 2.1rem;
+            padding: clamp(1.5rem, 3vw, 2.4rem);
             box-shadow: var(--shadow-soft);
         }
 
@@ -827,7 +803,7 @@
             background: linear-gradient(135deg, rgba(201, 119, 98, 0.08), rgba(215, 185, 128, 0.12));
             border: 1px solid rgba(46, 37, 34, 0.06);
             border-radius: 28px;
-            padding: 1.4rem;
+            padding: clamp(1.2rem, 3vw, 2rem);
         }
 
         .testimonial-grid {
@@ -839,7 +815,7 @@
         .testimonial {
             background: rgba(255,255,255,0.65);
             border-radius: 18px;
-            padding: 1.2rem;
+            padding: 1.35rem;
             border: 1px solid rgba(46, 37, 34, 0.04);
         }
 
@@ -1082,6 +1058,42 @@
             margin-top: 1.25rem;
         }
 
+        .compact-section-head {
+            margin-bottom: 1.5rem;
+        }
+
+        .compact-section-title {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+        }
+
+        .builder-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-heading {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .builder-packaging-info {
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+        }
+
+        .full-width-order {
+            width: 100%;
+            margin-top: 1.2rem;
+        }
+
+        .promise-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-label {
+            color: rgba(215,185,128,0.9);
+            margin-bottom: 0.2rem;
+        }
+
         .packaging-info p,
         .packaging-info li {
             color: var(--color-text-soft);
@@ -1288,10 +1300,18 @@
         .cta-banner h3 {
             font-size: clamp(2rem, 3vw, 3rem);
             margin-bottom: 0.4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-banner p {
             color: rgba(255,255,255,0.72);
+        }
+
+        .cta-banner > div,
+        .cta-banner > a {
+            position: relative;
+            z-index: 1;
         }
 
         footer {
@@ -1301,7 +1321,7 @@
         }
 
         .footer-inner {
-            width: min(1240px, calc(100% - 32px));
+            width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
             display: grid;
             gap: 1.8rem;
@@ -1309,6 +1329,11 @@
 
         .footer-brand {
             text-align: center;
+        }
+
+        .footer-logo-area {
+            justify-content: center;
+            margin-bottom: 0.8rem;
         }
 
         .footer-brand h4 {
@@ -1382,7 +1407,7 @@
             }
 
             .hero-grid { text-align: center; }
-            .cta-row, .hero-stats { justify-content: center; }
+            .cta-row { justify-content: center; }
             .showcase-card img { height: 540px; }
             .gallery-item { flex-basis: min(82vw, 680px); }
         }
@@ -1397,7 +1422,6 @@
             .products-grid { grid-template-columns: 1fr; gap: 1.2rem; }
             .product-card,
             .product-card:first-child { grid-column: span 1; }
-            .product-card:nth-child(3n + 2) { transform: none; }
             .collection-marker { margin-right: 0; }
             .section-wrap { padding: 4.25rem 0; }
             .section-head { margin-bottom: 2rem; }
@@ -1455,20 +1479,6 @@
                     <div class="cta-row">
                         <a href="#products" class="btn-primary">Shop now</a>
                         <a href="#builder" class="btn-secondary">Build a hamper</a>
-                    </div>
-                    <div class="hero-stats" aria-label="Brand statistics">
-                        <div>
-                            <strong>4.9/5</strong>
-                            <span>Guest rating</span>
-                        </div>
-                        <div>
-                            <strong>1200+</strong>
-                            <span>Boxes gifted</span>
-                        </div>
-                        <div>
-                            <strong>48h</strong>
-                            <span>Ready to send</span>
-                        </div>
                     </div>
                 </div>
 
@@ -1756,13 +1766,13 @@
 
             <div class="section-shell hamper-builder reveal">
                 <div class="hamper-panel">
-                    <div class="section-tag" style="margin-bottom: 0.5rem;">Choose your treats</div>
+                    <div class="section-tag builder-label">Choose your treats</div>
                     <div id="hamper-builder" class="hamper-grid"></div>
                 </div>
 
                 <aside class="summary-panel">
-                    <div class="section-tag" style="margin-bottom: 0.5rem;">Your hamper</div>
-                    <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Summary</h3>
+                    <div class="section-tag builder-label">Your hamper</div>
+                    <h3 class="summary-heading">Summary</h3>
                     <div id="selected-items" class="selected-items"></div>
 
                     <div class="summary-total">
@@ -1770,12 +1780,12 @@
                         <strong id="total-price">₹0</strong>
                     </div>
 
-                    <div class="packaging-info" style="margin-top: 1rem; padding: 0.9rem 1rem;">
+                    <div class="packaging-info builder-packaging-info">
                         <p><strong>Standard packaging: ₹250</strong></p>
                         <p>Packaging design is subject to availability. Contact for more details.</p>
                     </div>
 
-                    <a id="hamper-order" class="btn-primary" style="width: 100%; margin-top: 1.2rem;" href="https://wa.me/917705982880?text=Hi!%20I%20want%20to%20build%20my%20hamper" target="_blank" rel="noopener noreferrer">Send this hamper</a>
+                    <a id="hamper-order" class="btn-primary full-width-order" href="https://wa.me/917705982880?text=Hi!%20I%20want%20to%20build%20my%20hamper" target="_blank" rel="noopener noreferrer">Send this hamper</a>
                 </aside>
             </div>
         </section>
@@ -1792,7 +1802,7 @@
                 </div>
 
                 <div class="story-copy reveal">
-                    <div class="section-tag" style="margin-bottom: 0.5rem;">Our promise</div>
+                    <div class="section-tag promise-label">Our promise</div>
                     <h3>Less clutter. More meaning.</h3>
                     <p>We create gifting moments that feel personal and polished—whether it is a sweet thank-you, a family hamper, or a celebration box that becomes the centrepiece of the table.</p>
 
@@ -1823,9 +1833,9 @@
         <section class="section-wrap">
             <div class="section-shell">
                 <div class="testimonial-strip reveal">
-                    <div class="section-head" style="margin-bottom: 1.5rem;">
+                    <div class="section-head compact-section-head">
                         <span class="section-tag">Loved by guests</span>
-                        <h2 class="section-title" style="font-size: clamp(2rem, 3vw, 2.8rem);">People remember how it felt.</h2>
+                        <h2 class="section-title compact-section-title">People remember how it felt.</h2>
                     </div>
 
                     <div class="testimonial-grid">
@@ -1932,7 +1942,7 @@
             <div class="section-shell">
                 <div class="cta-banner reveal">
                     <div>
-                        <div class="section-tag" style="color: rgba(215,185,128,0.9); margin-bottom: 0.2rem;">Need a festive gift?</div>
+                                <div class="section-tag cta-label">Need a festive gift?</div>
                         <h3>Build a hamper that feels personal.</h3>
                     </div>
                     <a href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20customize%20a%20festive%20gift%20hamper" class="btn-primary" target="_blank" rel="noopener noreferrer">Custom order</a>
@@ -1944,7 +1954,7 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
-                <div class="logo-area" style="justify-content: center; margin-bottom: 0.8rem;">
+                <div class="logo-area footer-logo-area">
                     <div class="logo-mark" aria-label="Bake Me A Wish logo">
                         <img src="logo.png" alt="Bake Me A Wish logo">
                     </div>
