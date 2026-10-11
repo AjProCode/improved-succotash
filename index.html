@@ -1703,7 +1703,11 @@
         .product-price { color: var(--color-text); }
         .order-link { color: var(--color-terracotta-deep); }
 
-        .story-panel.primary { inset: 0 10% 10% 0; }
+        .story-panel.primary {
+            inset: 0;
+            box-shadow: var(--shadow-card);
+        }
+        .story-panel.secondary { display: none; }
         .story-copy { border-radius: 16px; background: rgba(255,253,248,0.74); }
         .story-copy h3 { font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 0.98; }
 
@@ -1817,12 +1821,28 @@
             box-shadow: 24px 28px 0 rgba(128,155,145,0.2), 0 30px 65px rgba(76,60,63,0.2);
         }
 
+        body::before {
+            opacity: 0.15;
+            background-image: linear-gradient(rgba(70,54,64,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(70,54,64,0.12) 1px, transparent 1px);
+            background-size: 46px 46px;
+        }
+
         .floating-badge {
             background: #f3e8d4;
             color: #463640;
         }
 
-        .mini-tag, .mini-order { color: var(--color-terracotta-deep); }
+        .mini-card {
+            background: transparent;
+            backdrop-filter: none;
+            border: 0;
+            box-shadow: none;
+            color: white;
+            text-shadow: 0 2px 12px rgba(33,27,24,0.65);
+        }
+
+        .mini-tag, .mini-order { color: #f1dfb6; }
+        .mini-card p { color: rgba(255,255,255,0.88); }
 
         .benefit-icon {
             background: #e5eee9;
@@ -1865,6 +1885,57 @@
         @media (max-width: 720px) {
             .visual-frame {
                 box-shadow: 12px 16px 0 rgba(128,155,145,0.2), 0 22px 45px rgba(76,60,63,0.18);
+            }
+        }
+
+        /* A balanced 4 + 4 + 4 + 1 collection rhythm for the 13-product range. */
+        .products-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card,
+        .product-card:first-child {
+            grid-column: span 1;
+        }
+
+        .product-card:first-child .product-media img,
+        .product-media img {
+            height: 250px;
+        }
+
+        .product-card:nth-child(13) {
+            grid-column: 2 / 4;
+        }
+
+        .product-card:nth-child(13) .product-media img {
+            height: 270px;
+        }
+
+        @media (max-width: 980px) {
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .product-card:nth-child(13) {
+                grid-column: 2 / 3;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .product-card:nth-child(13) {
+                grid-column: span 1;
+            }
+
+            .product-card:first-child .product-media img,
+            .product-media img,
+            .product-card:nth-child(13) .product-media img {
+                height: 250px;
             }
         }
     </style>
@@ -2250,9 +2321,6 @@
                 <div class="story-visual reveal">
                     <div class="story-panel primary">
                         <img src="About us image.png" alt="Festive Bake Me A Wish gift hamper">
-                    </div>
-                    <div class="story-panel secondary">
-                        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80" alt="Gifted festive treat pack">
                     </div>
                 </div>
 
