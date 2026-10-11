@@ -380,13 +380,12 @@
             height: clamp(440px, 56vw, 620px);
             object-fit: cover;
             display: block;
-            transition: opacity 0.45s var(--ease-spring), transform 0.65s var(--ease-spring), filter 0.45s ease;
+            transition: opacity 0.45s var(--ease-spring), transform 0.65s var(--ease-spring);
         }
 
         .showcase-card img.is-changing {
-            opacity: 0.35;
-            transform: scale(1.025);
-            filter: blur(3px) saturate(0.82);
+            opacity: 0.45;
+            transform: scale(1.02);
         }
 
         .floating-badge {
