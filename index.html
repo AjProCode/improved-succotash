@@ -899,15 +899,17 @@
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
-            background: linear-gradient(110deg, rgba(20,16,14,0.64), transparent 66%);
+            z-index: 0;
+            background: linear-gradient(110deg, rgba(34, 19, 14, 0.68), rgba(87, 51, 36, 0.18) 45%, rgba(20,16,14,0.12) 100%);
+            pointer-events: none;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+            filter: saturate(1.08) contrast(1.04) brightness(0.96);
+            transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
         }
 
         .gallery-item:hover img { transform: scale(1.05); }
@@ -1428,16 +1430,14 @@
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            filter: blur(4px);
-            transition: opacity 0.85s var(--ease-spring), transform 0.85s var(--ease-spring), filter 0.85s ease;
+            transition: opacity 0.85s var(--ease-spring), transform 0.85s var(--ease-spring);
             transition-delay: var(--reveal-delay, 0ms);
-            will-change: opacity, transform, filter;
+            will-change: opacity, transform;
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-            filter: blur(0);
             will-change: auto;
         }
 
@@ -2820,13 +2820,14 @@
             inset: -12%;
             z-index: 20;
             pointer-events: none;
-            opacity: 0.23;
+            opacity: 0.42;
             mix-blend-mode: multiply;
             background-image:
-                radial-gradient(circle at 17% 31%, rgba(73, 48, 38, 0.17) 0 0.7px, transparent 0.9px),
-                radial-gradient(circle at 73% 68%, rgba(73, 48, 38, 0.13) 0 0.6px, transparent 0.85px),
-                radial-gradient(circle at 42% 86%, rgba(255, 255, 255, 0.45) 0 0.8px, transparent 1px);
-            background-size: 5px 7px, 9px 11px, 13px 15px;
+                radial-gradient(circle at 17% 31%, rgba(86, 53, 35, 0.22) 0 0.9px, transparent 1.1px),
+                radial-gradient(circle at 73% 68%, rgba(112, 74, 46, 0.2) 0 0.8px, transparent 1px),
+                radial-gradient(circle at 42% 86%, rgba(255, 220, 170, 0.32) 0 1.1px, transparent 1.35px),
+                radial-gradient(circle at 60% 14%, rgba(189, 116, 79, 0.12) 0 28%, transparent 52%);
+            background-size: 6px 8px, 10px 12px, 15px 17px, 100% 100%;
             animation: paper-grain-drift 5.5s steps(3, end) infinite;
         }
 
@@ -2922,7 +2923,6 @@
 
         .reveal {
             transform: translateY(38px);
-            filter: blur(5px);
             transition-duration: 1s;
         }
 
