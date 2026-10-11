@@ -1742,6 +1742,126 @@
             .section-title { font-size: 2.7rem; }
             .visual-frame { box-shadow: 12px 16px 0 rgba(224,111,67,0.2), 0 22px 45px rgba(64,44,30,0.18); }
         }
+
+        /* Soft luxury palette */
+        :root {
+            --color-bg: #f7f3ef;
+            --color-bg-2: #eee7e1;
+            --color-surface: #fffdfb;
+            --color-surface-strong: #eee6df;
+            --color-text: #373036;
+            --color-text-soft: #70656b;
+            --color-terracotta: #b88991;
+            --color-terracotta-deep: #805d68;
+            --color-sage: #809b91;
+            --color-gold: #d2bd8a;
+            --color-gold-deep: #a88c56;
+            --color-border: rgba(55, 48, 54, 0.12);
+            --shadow-soft: 0 18px 48px rgba(76, 60, 63, 0.1);
+            --shadow-card: 0 28px 70px rgba(76, 60, 63, 0.16);
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 0% 0%, rgba(210,189,138,0.15), transparent 25rem),
+                linear-gradient(180deg, #fbf8f5 0%, #f2ece7 52%, #fffdfb 100%);
+        }
+
+        header {
+            background: rgba(251, 248, 245, 0.88);
+            border-bottom-color: rgba(55,48,54,0.1);
+        }
+
+        .logo-mark {
+            width: 58px;
+            height: 58px;
+            background: transparent;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        .logo-mark::before { display: none; }
+        .logo-mark img { object-fit: contain; }
+        .brand-name { color: #332a31; }
+        .brand-edition { color: var(--color-terracotta-deep); }
+        .nav-links a:last-child { color: var(--color-terracotta-deep); }
+
+        .hero {
+            background:
+                radial-gradient(circle at 88% 12%, rgba(210,189,138,0.2), transparent 22rem),
+                linear-gradient(112deg, #fbf8f5 0%, #f1e9e4 58%, #e9e0db 100%);
+        }
+
+        .eyebrow {
+            background: #463640;
+            color: #f8f0e5;
+            box-shadow: 8px 8px 0 rgba(128,155,145,0.25);
+        }
+
+        .eyebrow::before { background: var(--color-gold); }
+
+        .hero-title span {
+            color: var(--color-terracotta-deep);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c69ba0, #a97883);
+            box-shadow: 0 14px 25px rgba(128,93,104,0.22);
+        }
+
+        .btn-primary:hover { background: #956b78; }
+        .btn-secondary:hover { border-color: var(--color-terracotta); }
+
+        .visual-frame {
+            background: #463640;
+            box-shadow: 24px 28px 0 rgba(128,155,145,0.2), 0 30px 65px rgba(76,60,63,0.2);
+        }
+
+        .floating-badge {
+            background: #f3e8d4;
+            color: #463640;
+        }
+
+        .mini-tag, .mini-order { color: var(--color-terracotta-deep); }
+
+        .benefit-icon {
+            background: #e5eee9;
+            color: var(--color-terracotta-deep);
+        }
+
+        #products { background: #fffdfb; }
+        #builder { background: #463640; }
+        #story { background: #f0e7e2; }
+        #builder .section-tag { color: #e1c994; }
+
+        .section-tag,
+        .product-meta,
+        .order-link { color: var(--color-terracotta-deep); }
+
+        .product-card {
+            border-color: rgba(55,48,54,0.11);
+            background: #fffdfb;
+        }
+
+        .product-media { background: #e8dfdb; }
+        .product-badge { background: #463640; color: #f8f0e5; }
+        .product-price { color: #463640; }
+
+        .story-copy { background: rgba(255,253,251,0.8); }
+        .gallery-lookbook { background: #463640; }
+        .gallery-button:hover {
+            border-color: var(--color-terracotta);
+            background: var(--color-terracotta);
+        }
+        .cta-banner { background: linear-gradient(135deg, #8d6974, #6d5362); }
+        .cta-label { color: #f1dfb6; }
+        footer { background: #332a31; }
+
+        @media (max-width: 720px) {
+            .visual-frame {
+                box-shadow: 12px 16px 0 rgba(128,155,145,0.2), 0 22px 45px rgba(76,60,63,0.18);
+            }
+        }
     </style>
 </head>
 <body>
