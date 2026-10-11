@@ -2712,6 +2712,21 @@
             border-bottom-color: rgba(33,27,24,0.1);
         }
 
+        .shipping-note {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 0.65rem;
+            color: #211b18;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .shipping-note strong {
+            color: #805d68;
+        }
+
         #builder .builder-packaging-info p {
             font-size: 0.78rem;
         }
@@ -3088,6 +3103,10 @@
                         <span>Total</span>
                         <strong id="total-price">₹0</strong>
                     </div>
+                    <div class="shipping-note">
+                        <span>+ Shipping</span>
+                        <strong>At actuals</strong>
+                    </div>
 
                     <div class="packaging-info builder-packaging-info">
                         <p><strong>Standard packaging: ₹250</strong></p>
@@ -3330,7 +3349,16 @@
 
         if (siteAudio && audioToggle && audioGate) {
             siteAudio.volume = 0.12;
-            siteAudio.currentTime = 2;
+
+            const setAudioStartTime = () => {
+                siteAudio.currentTime = Math.min(2, siteAudio.duration || 2);
+            };
+
+            if (siteAudio.readyState >= 1) {
+                setAudioStartTime();
+            } else {
+                siteAudio.addEventListener('loadedmetadata', setAudioStartTime, { once: true });
+            }
 
             const syncAudioButton = (isPlaying) => {
                 audioToggle.textContent = isPlaying ? '♫ Pause music' : '♫ Play music';
@@ -3342,20 +3370,22 @@
 
                 if (!siteAudio.paused && !siteAudio.muted) {
                     syncAudioButton(true);
-                    return;
+                    return Promise.resolve(true);
                 }
 
-                siteAudio.currentTime = 2;
-                siteAudio.play().then(() => {
+                setAudioStartTime();
+                return siteAudio.play().then(() => {
                     syncAudioButton(true);
+                    return true;
                 }).catch(() => {
                     syncAudioButton(false);
+                    return false;
                 });
             };
 
-            audioGate.addEventListener('click', (event) => {
+            audioGate.addEventListener('click', async (event) => {
+                await startAudio(event);
                 audioGate.classList.add('is-dismissed');
-                startAudio(event);
             }, { once: true });
 
             siteAudio.play().then(() => {
@@ -3370,7 +3400,7 @@
 
             audioToggle.addEventListener('click', async () => {
                 if (siteAudio.paused || siteAudio.muted) {
-                    siteAudio.currentTime = 2;
+                    setAudioStartTime();
                     await siteAudio.play();
                     syncAudioButton(true);
                 } else {
@@ -3503,8 +3533,9 @@
             if (!galleryTrack || !gallerySlideCount) return;
             galleryIndex = nextIndex;
             galleryTrack.style.transition = animate ? '' : 'none';
-            const slideWidth = gallerySlides[0].getBoundingClientRect().width;
-            galleryTrack.style.transform = `translateX(-${galleryIndex * (slideWidth + 16)}px)`;
+            const targetSlide = galleryTrack.children[galleryIndex];
+            if (!targetSlide) return;
+            galleryTrack.style.transform = `translateX(-${targetSlide.offsetLeft}px)`;
             galleryDots?.querySelectorAll('.gallery-dot').forEach((dot, index) => {
                 const isActive = index === getGalleryDisplayIndex();
                 dot.classList.toggle('active', isActive);
@@ -3591,11 +3622,7 @@
             { id: 'multi-millet-crackers', name: 'Multi Millet Crackers with Vegan Cheese Dip', size: '150 grams + 20 grams vegan cheese dip', price: 280, image: 'Multi Millet Crackers.png', tag: 'Wholesome' }
         ];
 
-        const selectedItems = new Map([
-            ['masala', 1],
-            ['biscotti', 1],
-            ['cocktail', 1]
-        ]);
+        const selectedItems = new Map();
 
         let selectedBox = { name: 'Standard packaging', price: 250 };
 
@@ -3654,8 +3681,8 @@
             totalPriceEl.textContent = `₹${total}`;
 
             const message = items.length
-                ? encodeURIComponent(`Hi! I would like to build this hamper: ${items.map((item) => `${item.name} x${selectedItems.get(item.id) || 1}`).join(', ')}. Packaging: ${selectedBox.name} (₹${selectedBox.price}). Total: ₹${total}.`)
-                : encodeURIComponent(`Hi! I would like to build a custom festive hamper. Packaging: ${selectedBox.name} (₹${selectedBox.price}).`);
+                ? encodeURIComponent(`Hi! I would like to build this hamper: ${items.map((item) => `${item.name} x${selectedItems.get(item.id) || 1}`).join(', ')}. Packaging: ${selectedBox.name} (₹${selectedBox.price}). Total: ₹${total} + shipping at actuals.`)
+                : encodeURIComponent(`Hi! I would like to build a custom festive hamper. Packaging: ${selectedBox.name} (₹${selectedBox.price}) + shipping at actuals.`);
 
             hamperOrderButton.href = `https://wa.me/917705982880?text=${message}`;
         }
