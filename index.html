@@ -2847,11 +2847,6 @@
             50% { box-shadow: 0 0 0 8px rgba(217,177,109,0.08); }
         }
 
-        @keyframes warm-sheen {
-            from { transform: translateX(-120%) rotate(12deg); }
-            to { transform: translateX(140%) rotate(12deg); }
-        }
-
         .hero-grid > div:first-child > * {
             animation: welcome-rise 1.05s var(--ease-spring) both;
         }
@@ -2863,17 +2858,6 @@
 
         .eyebrow {
             animation: welcome-glow 2.8s ease-in-out infinite;
-        }
-
-        .showcase-card::after {
-            content: "";
-            position: absolute;
-            inset: -20% auto -20% -35%;
-            width: 30%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
-            transform: rotate(12deg);
-            pointer-events: none;
-            animation: warm-sheen 5s ease-in-out infinite;
         }
 
         .products-grid {
@@ -2953,7 +2937,6 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-grid > div:first-child > *,
             .eyebrow,
-            .showcase-card::after,
             body::after {
                 animation: none;
             }
