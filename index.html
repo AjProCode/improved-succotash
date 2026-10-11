@@ -1846,6 +1846,11 @@
         .product-media { background: #e8dfdb; }
         .product-badge { background: #463640; color: #f8f0e5; }
         .product-price { color: #463640; }
+        .packaging-charge {
+            background: rgba(210,189,138,0.18);
+            border: 1px dashed rgba(168,140,86,0.45);
+        }
+        .packaging-charge .selected-dot { background: var(--color-gold-deep); }
 
         .story-copy { background: rgba(255,253,251,0.8); }
         .gallery-lookbook { background: #463640; }
@@ -2676,7 +2681,7 @@
             const total = subtotal + selectedBox.price;
 
             selectedItemsContainer.innerHTML = items.length
-                ? items.map((item) => `
+                ? `${items.map((item) => `
                     <div class="selected-item">
                         <div class="selected-label">
                             <span class="selected-dot"></span>
@@ -2684,8 +2689,22 @@
                         </div>
                         <strong>₹${item.price * (selectedItems.get(item.id) || 1)}</strong>
                     </div>
-                `).join('')
-                : '<div class="empty-state">Select a few treats to begin your hamper.</div>';
+                `).join('')}
+                    <div class="selected-item packaging-charge">
+                        <div class="selected-label">
+                            <span class="selected-dot"></span>
+                            <span>${selectedBox.name}</span>
+                        </div>
+                        <strong>₹${selectedBox.price}</strong>
+                    </div>`
+                : `<div class="empty-state">Select a few treats to begin your hamper.</div>
+                    <div class="selected-item packaging-charge">
+                        <div class="selected-label">
+                            <span class="selected-dot"></span>
+                            <span>${selectedBox.name}</span>
+                        </div>
+                        <strong>₹${selectedBox.price}</strong>
+                    </div>`;
 
             totalPriceEl.textContent = `₹${total}`;
 
