@@ -2503,6 +2503,39 @@
             }
         }
 
+        .audio-toggle {
+            position: fixed;
+            right: 24px;
+            bottom: 102px;
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.28);
+            border-radius: 999px;
+            padding: 0.72rem 1rem;
+            background: #463640;
+            color: #fffaf2;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 12px 25px rgba(33,27,24,0.18);
+            transition: var(--transition);
+        }
+
+        .audio-toggle:hover {
+            background: #805d68;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 720px) {
+            .audio-toggle {
+                right: 16px;
+                bottom: 96px;
+                font-size: 0.62rem;
+            }
+        }
+
         /* Final storefront adjustments. */
         .hero-title {
             margin-bottom: 1.35rem;
@@ -2546,21 +2579,21 @@
         }
 
         #builder {
-            background: #fffdfb;
+            background: #463640;
             background-image:
-                linear-gradient(rgba(70,54,64,0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(70,54,64,0.06) 1px, transparent 1px);
-            color: #211b18;
+                linear-gradient(rgba(248,240,229,0.14) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,240,229,0.14) 1px, transparent 1px);
+            color: #fffaf2;
         }
 
         #builder .section-title,
         #builder .section-subtitle {
-            color: #211b18;
+            color: #fffaf2;
         }
 
         #builder .section-tag,
         #builder .builder-label {
-            color: #805d68;
+            color: #e1c994;
         }
 
         #builder .hamper-builder {
@@ -3224,7 +3257,42 @@
         </svg>
     </a>
 
+    <audio id="site-audio" autoplay loop preload="auto">
+        <source src="HappyDiwaliAudio.mp3" type="audio/mpeg">
+    </audio>
+    <button id="audio-toggle" class="audio-toggle" type="button" aria-pressed="false">
+        ♫ Play music
+    </button>
+
     <script>
+        const siteAudio = document.getElementById('site-audio');
+        const audioToggle = document.getElementById('audio-toggle');
+
+        if (siteAudio && audioToggle) {
+            siteAudio.volume = 0.12;
+            siteAudio.play().then(() => {
+                audioToggle.textContent = '♫ Pause music';
+                audioToggle.setAttribute('aria-pressed', 'true');
+            }).catch(() => {
+                audioToggle.textContent = '♫ Play music';
+                audioToggle.setAttribute('aria-pressed', 'false');
+            });
+
+            audioToggle.addEventListener('click', async () => {
+                if (siteAudio.paused || siteAudio.muted) {
+                    siteAudio.muted = false;
+                    siteAudio.volume = 0.12;
+                    await siteAudio.play();
+                    audioToggle.textContent = '♫ Pause music';
+                    audioToggle.setAttribute('aria-pressed', 'true');
+                } else {
+                    siteAudio.pause();
+                    audioToggle.textContent = '♫ Play music';
+                    audioToggle.setAttribute('aria-pressed', 'false');
+                }
+            });
+        }
+
         const header = document.getElementById('main-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
