@@ -2820,13 +2820,13 @@
                     <div class="visual-frame">
                         <div class="showcase-card">
                             <div class="floating-badge">Best seller</div>
-                            <img id="hero-hamper-image" src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Festive hamper packaging design">
+                            <img id="hero-hamper-image" src="Spicy Masala Berries.jpeg" alt="Spicy Masala Berries">
                             <div class="mini-card">
-                                <div class="mini-tag">Festive hamper</div>
-                                <h3 id="hero-hamper-name">Diwali Glow Box</h3>
-                                <p id="hero-hamper-description">Signature bites, gifting notes, and golden packaging.</p>
+                                <div class="mini-tag">Featured treat</div>
+                                <h3 id="hero-hamper-name">Spicy Masala Berries</h3>
+                                <p id="hero-hamper-description">Tangy, sweet, and lightly spiced with festive energy.</p>
                                 <div class="mini-footer">
-                                    <a id="hero-hamper-order" href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20order%20the%20Diwali%20Glow%20Box" class="mini-order" target="_blank" rel="noopener noreferrer">Enquire</a>
+                                    <a id="hero-hamper-order" href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20order%20Spicy%20Masala%20Berries" class="mini-order" target="_blank" rel="noopener noreferrer">Order</a>
                                 </div>
                             </div>
                         </div>
@@ -3567,36 +3567,19 @@
         const heroHamperDescription = document.getElementById('hero-hamper-description');
         const heroHamperOrder = document.getElementById('hero-hamper-order');
         const hamperSlides = [
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg',
-                name: 'Diwali Glow Box',
-                description: 'Signature bites, gifting notes, and golden packaging.'
-            },
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg',
-                name: 'Royal Celebration Hamper',
-                description: 'A polished festive selection made for sharing.'
-            },
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg',
-                name: 'Marigold Moments Box',
-                description: 'Bright festive flavours wrapped for thoughtful gifting.'
-            },
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg',
-                name: 'Golden Indulgence Hamper',
-                description: 'A warm, celebratory assortment with a luxe finish.'
-            },
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg',
-                name: 'Festive Treats Collection',
-                description: 'Handcrafted favourites for hosts, families, and friends.'
-            },
-            {
-                image: 'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg',
-                name: 'Luxe Mithai Hamper',
-                description: 'A graceful festive presentation for special moments.'
-            }
+            { image: 'Spicy Masala Berries.jpeg', name: 'Spicy Masala Berries', description: 'Tangy, sweet, and lightly spiced with festive energy.' },
+            { image: 'Biscotti.jpeg', name: 'Biscotti Crisps', description: 'Crunchy, golden, and perfect for gifting moments.' },
+            { image: 'Italian .png', name: 'Italian Makhana Mix', description: 'A savoury snack mix with a refined festive bite.' },
+            { image: 'Fig barfi.png', name: 'Date and Fig Barfis', description: 'Sweet, rich, and naturally indulgent for Diwali gifting.' },
+            { image: 'Quinoa Almond Rocks.png', name: 'Quinoa Almond Rocks', description: 'A wholesome, nutty bite with a crisp festive finish.' },
+            { image: 'Bombay Cocktail Mix.jpeg', name: 'Bombay Cocktail Mix', description: 'A lively savoury mix made for sharing and gifting.' },
+            { image: 'Kaju Puri.jpeg', name: 'Kaju Puri', description: 'A delicate traditional favourite with rich cashew flavour.' },
+            { image: 'Cinnamon Sugar Cookies.png', name: 'Cinnamon Sugar Cookies', description: 'Buttery cookies with a warm cinnamon-sugar finish.' },
+            { image: 'Chocolate Orange Bark.jpeg', name: 'Chocolate Orange Bark', description: 'Dark chocolate and orange in every generous shard.' },
+            { image: 'Nan Khatai_2.jpg', name: 'Nan Khatai', description: 'Crumbly nan khatai with the warmth of a treasured recipe.' },
+            { image: 'The Seed Affair.jpeg', name: 'Seed Affair', description: 'A nourishing seed blend that brings texture and warmth.' },
+            { image: 'Espresso Thumbprint cookies.jpg', name: 'Espresso Thumbprint Cookies', description: 'Buttery espresso thumbprints with a rich centre.' },
+            { image: 'Multi Millet Crackers.png', name: 'Multi Millet Crackers', description: 'Seeded multi-millet crackers with a crisp, savoury finish.' }
         ];
 
         let heroImageIndex = 0;
@@ -3610,8 +3593,8 @@
                 heroHamperImage.src = slide.image;
                 heroHamperName.textContent = slide.name;
                 heroHamperDescription.textContent = slide.description;
-                heroHamperImage.alt = `Festive hamper packaging design ${heroImageIndex + 1}`;
-                heroHamperOrder.href = `https://wa.me/917705982880?text=${encodeURIComponent(`Hi! I would like to enquire about the ${slide.name}`)}`;
+                heroHamperImage.alt = slide.name;
+                heroHamperOrder.href = `https://wa.me/917705982880?text=${encodeURIComponent(`Hi! I would like to order ${slide.name}`)}`;
                 heroHamperImage.classList.remove('is-changing');
             }, 450);
         }, 4000);
