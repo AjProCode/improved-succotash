@@ -2104,6 +2104,69 @@
             font-size: 0.76rem;
         }
 
+        /* Keep the dynamic hamper controls card-based and easy to scan. */
+        .hamper-panel,
+        .summary-panel {
+            background: rgba(255,253,251,0.94);
+            border: 1px solid rgba(248,240,229,0.35);
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(33,27,24,0.18);
+            padding: 1.5rem;
+        }
+
+        .hamper-item {
+            background: linear-gradient(135deg, #fffdfb, #f3ebe5);
+            border-color: rgba(70,54,64,0.12);
+            color: #373036;
+            box-shadow: 0 8px 18px rgba(76,60,63,0.06);
+        }
+
+        .hamper-item:hover {
+            background: #fffdfb;
+            border-color: rgba(128,93,104,0.46);
+            box-shadow: 0 14px 25px rgba(76,60,63,0.12);
+        }
+
+        .hamper-item.selected {
+            background: linear-gradient(135deg, #f4e6e4, #f1eadb);
+            border-color: #b88991;
+            box-shadow: 0 12px 24px rgba(128,93,104,0.12);
+        }
+
+        .hamper-item h4 { color: #373036; }
+        .hamper-item p { color: #70656b; }
+        .hamper-item .tag {
+            color: #805d68;
+            background: rgba(184,137,145,0.12);
+            padding: 0.4rem 0.55rem;
+            border-radius: 999px;
+        }
+
+        .summary-heading { color: #373036; }
+        .selected-item {
+            background: rgba(238,230,223,0.72);
+            border-bottom-color: rgba(70,54,64,0.1);
+            border-radius: 10px;
+            padding: 0.7rem 0.8rem;
+            color: #373036;
+        }
+
+        .selected-item strong { color: #805d68; }
+        .packaging-charge {
+            background: rgba(210,189,138,0.2);
+            border: 1px dashed rgba(168,140,86,0.45);
+        }
+
+        .summary-total {
+            border-top-color: rgba(70,54,64,0.14);
+            border-bottom-color: rgba(70,54,64,0.1);
+            color: #373036;
+        }
+
+        .summary-total strong { color: #805d68; }
+        .builder-packaging-info { color: #70656b; }
+        .builder-packaging-info p { color: #70656b; }
+
         @media (max-width: 980px) {
             .hamper-builder {
                 grid-template-columns: 1fr;
