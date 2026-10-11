@@ -11,6 +11,7 @@ Bake Me A Wish is designed to feel warm, premium, and celebratory. The page high
 - Elegant hero section with strong festive branding
 - Curated product gallery for premium sweet and snack items
 - Hamper packaging gallery showcasing available festive presentation styles
+- Auto-rotating, seamless infinite photo gallery with manual arrows, dots, touch swipes, and keyboard controls
 - Interactive hamper builder for selecting treats and placing orders with packaging details included
 - Responsive layout for mobile and desktop screens
 - Direct WhatsApp ordering links for quick customer conversion
@@ -20,6 +21,8 @@ Bake Me A Wish is designed to feel warm, premium, and celebratory. The page high
 
 - `index.html` — main page structure, styles, and interactive JavaScript
 - `logo.png` — brand logo asset
+- `HappyDiwaliAudio.mp3` — optional low-volume background audio
+- Product image assets — product and packaging photography used throughout the storefront
 - `README.md` — project overview and usage instructions
 
 ## Local preview
@@ -51,6 +54,7 @@ You can easily adapt the project by editing:
 - Product names, pricing, and catalog entries in the `hamperCatalog` array inside `index.html`
 - WhatsApp order links in the page and builder actions
 - Branding, colors, and typography variables in the CSS at the top of `index.html`
+- Gallery photos in the `gallery-track` markup; the gallery auto-rotates in a seamless infinite loop and also supports arrows, dots, touch swipes, and keyboard controls
 
 ## Notes
 
