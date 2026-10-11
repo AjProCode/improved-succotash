@@ -2809,6 +2809,27 @@
                 linear-gradient(180deg, var(--color-bg) 0%, #fffaf6 100%);
         }
 
+        @keyframes paper-grain-drift {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(-1%, 1%, 0); }
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: -12%;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.16;
+            mix-blend-mode: multiply;
+            background-image:
+                radial-gradient(circle at 17% 31%, rgba(73, 48, 38, 0.17) 0 0.7px, transparent 0.9px),
+                radial-gradient(circle at 73% 68%, rgba(73, 48, 38, 0.13) 0 0.6px, transparent 0.85px),
+                radial-gradient(circle at 42% 86%, rgba(255, 255, 255, 0.45) 0 0.8px, transparent 1px);
+            background-size: 7px 9px, 11px 13px, 17px 15px;
+            animation: paper-grain-drift 9s steps(2, end) infinite;
+        }
+
         .hero {
             background:
                 radial-gradient(circle at 18% 24%, rgba(235, 175, 127, 0.28), transparent 30%),
@@ -2866,7 +2887,8 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-grid > div:first-child > *,
             .eyebrow,
-            .showcase-card::after {
+            .showcase-card::after,
+            body::after {
                 animation: none;
             }
         }
