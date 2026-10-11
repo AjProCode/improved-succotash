@@ -403,6 +403,11 @@
             height: 620px;
             object-fit: cover;
             display: block;
+            transition: opacity 0.45s ease;
+        }
+
+        .showcase-card img.is-changing {
+            opacity: 0.35;
         }
 
         .floating-badge {
@@ -1319,7 +1324,7 @@
                     <div class="visual-frame">
                         <div class="showcase-card">
                             <div class="floating-badge">Best seller</div>
-                            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=80" alt="Premium Diwali festive hamper">
+                            <img id="hero-hamper-image" src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Festive hamper packaging design">
                             <div class="mini-card">
                                 <div class="mini-tag">Festive hamper</div>
                                 <h3>Diwali Glow Box</h3>
@@ -1798,6 +1803,29 @@
                 heroVisualFrame.style.transform = `perspective(1500px) rotateX(${(-y).toFixed(2)}deg) rotateY(${x.toFixed(2)}deg) translateY(-6px)`;
             });
         }
+
+        const heroHamperImage = document.getElementById('hero-hamper-image');
+        const hamperImages = [
+            'WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg',
+            'WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg',
+            'WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg',
+            'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg',
+            'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg',
+            'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg'
+        ];
+
+        let heroImageIndex = 0;
+        setInterval(() => {
+            if (!heroHamperImage) return;
+
+            heroHamperImage.classList.add('is-changing');
+            window.setTimeout(() => {
+                heroImageIndex = (heroImageIndex + 1) % hamperImages.length;
+                heroHamperImage.src = hamperImages[heroImageIndex];
+                heroHamperImage.alt = `Festive hamper packaging design ${heroImageIndex + 1}`;
+                heroHamperImage.classList.remove('is-changing');
+            }, 450);
+        }, 4000);
 
         document.querySelectorAll('.product-card, .benefit-card, .testimonial, .gallery-item').forEach((card) => {
             card.addEventListener('mousemove', (event) => {
