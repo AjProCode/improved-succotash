@@ -1,1 +1,65 @@
-# improved-succotash
+# Bake Me A Wish
+
+A festive, premium gifting landing page for Diwali-inspired sweets and curated hamper boxes. The project is built as a single-page storefront with polished visuals, a product collection, a hamper packaging gallery, an interactive hamper builder, and direct WhatsApp ordering.
+
+## Overview
+
+Bake Me A Wish is designed to feel warm, premium, and celebratory. The page highlights handcrafted sweets, curated gifting bundles, and a modern storefront aesthetic suited for seasonal gifting campaigns.
+
+## Features
+
+- Elegant hero section with strong festive branding
+- Curated product gallery for premium sweet and snack items
+- Hamper packaging gallery showcasing available festive presentation styles
+- Interactive hamper builder for selecting treats and placing orders with packaging details included
+- Responsive layout for mobile and desktop screens
+- Direct WhatsApp ordering links for quick customer conversion
+- Story, testimonial, and gallery sections to reinforce the gifting experience
+
+## Project structure
+
+- `index.html` — main page structure, styles, and interactive JavaScript
+- `logo.png` — brand logo asset
+- `README.md` — project overview and usage instructions
+
+## Local preview
+
+Because this project is a static front-end site, you can run it in any browser without installing dependencies.
+
+### Option 1: Open directly
+
+Open `index.html` in your browser.
+
+### Option 2: Serve locally
+
+From the project root, run:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then visit:
+
+```text
+http://localhost:8000
+```
+
+## Customization
+
+You can easily adapt the project by editing:
+
+- Product names, pricing, and catalog entries in the `hamperCatalog` array inside `index.html`
+- WhatsApp order links in the page and builder actions
+- Branding, colors, and typography variables in the CSS at the top of `index.html`
+
+## Notes
+
+This project is intentionally lightweight and dependency-free, making it ideal for quick deployment as a static marketing or storefront landing page.
+
+Packaging details are also included in the storefront and may vary by availability, with a standard packaging charge of ₹250, delivery fees at actuals, last order date 25th October, and outstation hampers dispatched between 28th and 30th October.
+
+## Contact / business link
+
+The storefront includes WhatsApp ordering links that point to the business number configured in the page:
+
+- `+91 77059 82880`

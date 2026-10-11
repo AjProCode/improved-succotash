@@ -905,6 +905,60 @@
             font-size: 1.35rem;
         }
 
+        .packaging-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .package-card {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(46, 37, 34, 0.06);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .package-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .package-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .package-card figcaption {
+            padding: 1rem 1rem 1.2rem;
+            font-weight: 600;
+            color: var(--color-text-soft);
+        }
+
+        .packaging-info {
+            background: rgba(255,255,255,0.66);
+            border: 1px solid rgba(46, 37, 34, 0.06);
+            border-radius: 24px;
+            padding: 1.2rem 1.3rem;
+            box-shadow: var(--shadow-soft);
+            margin-top: 1.25rem;
+        }
+
+        .packaging-info p,
+        .packaging-info li {
+            color: var(--color-text-soft);
+            font-size: 0.95rem;
+        }
+
+        .packaging-info ul {
+            margin-top: 0.8rem;
+            padding-left: 1.2rem;
+            display: grid;
+            gap: 0.45rem;
+        }
+
         .hamper-builder {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -1173,7 +1227,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 980px) {
-            .hero-grid, .story-grid, .testimonial-grid, .gallery-grid {
+            .hero-grid, .story-grid, .testimonial-grid, .gallery-grid, .packaging-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1226,6 +1280,7 @@
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#hero">Home</a>
                 <a href="#products">Collection</a>
+                <a href="#packaging">Packaging</a>
                 <a href="#builder">Build Your Hamper</a>
                 <a href="#story">Our Story</a>
                 <a href="#gallery">Gallery</a>
@@ -1489,33 +1544,64 @@
             </div>
         </section>
 
+        <section id="packaging" class="section-wrap">
+            <div class="section-head reveal">
+                <span class="section-tag">Hamper packaging</span>
+                <h2 class="section-title">Packaging that elevates every festive moment.</h2>
+                <p class="section-subtitle">Each hamper is carefully curated and packed to feel premium. Packaging design is subject to availability, and we are happy to share the current styles and finish options on request.</p>
+            </div>
+
+            <div class="section-shell">
+                <div class="packaging-grid reveal">
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.42 (1).jpeg" alt="Festive hamper packaging design 1">
+                        <figcaption>Signature festive wrap</figcaption>
+                    </figure>
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.43 (3).jpeg" alt="Festive hamper packaging design 2">
+                        <figcaption>Warm celebratory finish</figcaption>
+                    </figure>
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.43 (4).jpeg" alt="Festive hamper packaging design 3">
+                        <figcaption>Premium gifting presentation</figcaption>
+                    </figure>
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg" alt="Festive hamper packaging design 4">
+                        <figcaption>Gift-ready festive styling</figcaption>
+                    </figure>
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg" alt="Festive hamper packaging design 5">
+                        <figcaption>Elegant hamper detailing</figcaption>
+                    </figure>
+                    <figure class="package-card">
+                        <img src="WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg" alt="Festive hamper packaging design 6">
+                        <figcaption>Luxury seasonal presentation</figcaption>
+                    </figure>
+                </div>
+
+                <div class="packaging-info reveal">
+                    <p><strong>Packaging design is subject to availability. Contact for more details.</strong></p>
+                    <ul>
+                        <li>Standard packaging: ₹250</li>
+                        <li>Delivery fees: at actuals</li>
+                        <li>Last date of order: 25th October</li>
+                        <li>Outstation hampers will be sent for delivery from 28th to 30th October</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="builder" class="section-wrap">
             <div class="section-head reveal">
                 <span class="section-tag">Build your hamper</span>
                 <h2 class="section-title">Design a gifting box that feels made just for them.</h2>
-                <p class="section-subtitle">Mix your signature treats, choose a finishing box, and send it directly in one seamless WhatsApp order.</p>
+                <p class="section-subtitle">Mix your signature treats and place your order directly on WhatsApp.</p>
             </div>
 
             <div class="section-shell hamper-builder reveal">
                 <div class="hamper-panel">
                     <div class="section-tag" style="margin-bottom: 0.5rem;">Choose your treats</div>
                     <div id="hamper-builder" class="hamper-grid"></div>
-
-                    <div class="section-tag" style="margin: 1.3rem 0 0.5rem;">Box finish</div>
-                    <div class="builder-options" id="box-options">
-                        <button type="button" class="builder-option active" data-box="Signature Gold" data-price="300">
-                            <strong>Signature Gold</strong>
-                            <span>₹300</span>
-                        </button>
-                        <button type="button" class="builder-option" data-box="Ivory Luxe" data-price="420">
-                            <strong>Ivory Luxe</strong>
-                            <span>₹420</span>
-                        </button>
-                        <button type="button" class="builder-option" data-box="Rosewood Silk" data-price="540">
-                            <strong>Rosewood Silk</strong>
-                            <span>₹540</span>
-                        </button>
-                    </div>
                 </div>
 
                 <aside class="summary-panel">
@@ -1526,6 +1612,11 @@
                     <div class="summary-total">
                         <span>Total</span>
                         <strong id="total-price">₹0</strong>
+                    </div>
+
+                    <div class="packaging-info" style="margin-top: 1rem; padding: 0.9rem 1rem;">
+                        <p><strong>Standard packaging: ₹250</strong></p>
+                        <p>Packaging design is subject to availability. Contact for more details.</p>
                     </div>
 
                     <a id="hamper-order" class="btn-primary" style="width: 100%; margin-top: 1.2rem;" href="https://wa.me/917705982880?text=Hi!%20I%20want%20to%20build%20my%20hamper" target="_blank" rel="noopener noreferrer">Send this hamper</a>
@@ -1741,7 +1832,7 @@
             ['cocktail', 1]
         ]);
 
-        let selectedBox = { name: 'Signature Gold', price: 300 };
+        let selectedBox = { name: 'Standard packaging', price: 250 };
 
         const hamperBuilder = document.getElementById('hamper-builder');
         const selectedItemsContainer = document.getElementById('selected-items');
@@ -1784,8 +1875,8 @@
             totalPriceEl.textContent = `₹${total}`;
 
             const message = items.length
-                ? encodeURIComponent(`Hi! I would like to build this hamper: ${items.map((item) => `${item.name} x${selectedItems.get(item.id) || 1}`).join(', ')}. Box finish: ${selectedBox.name}. Total: ₹${total}.`)
-                : encodeURIComponent(`Hi! I would like to build a custom festive hamper. Box finish: ${selectedBox.name}.`);
+                ? encodeURIComponent(`Hi! I would like to build this hamper: ${items.map((item) => `${item.name} x${selectedItems.get(item.id) || 1}`).join(', ')}. Packaging: ${selectedBox.name} (₹${selectedBox.price}). Total: ₹${total}.`)
+                : encodeURIComponent(`Hi! I would like to build a custom festive hamper. Packaging: ${selectedBox.name} (₹${selectedBox.price}).`);
 
             hamperOrderButton.href = `https://wa.me/917705982880?text=${message}`;
         }
