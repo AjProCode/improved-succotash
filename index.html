@@ -2995,6 +2995,14 @@
         .packaging-option strong { color: #805d68; }
         .packaging-option input { accent-color: #805d68; }
         .packaging-option:has(input:checked) { border-color: #805d68; background: rgba(128,93,104,0.08); }
+        .combo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+        .combo-card { background: #fffaf2; border: 1px solid rgba(128,93,104,0.2); border-radius: 18px; padding: 1.3rem; display: flex; flex-direction: column; gap: 0.7rem; }
+        .combo-card h3 { color: #373036; margin: 0; }
+        .combo-card p { color: #70656b; margin: 0; flex: 1; }
+        .combo-prices { display: flex; justify-content: space-between; color: #70656b; }
+        .combo-prices strong { color: #805d68; display: block; font-size: 1.15rem; }
+        .combo-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .combo-actions button { flex: 1; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -3013,6 +3021,7 @@
                 <a href="#hero">Home</a>
                 <a href="#products">Collection</a>
                 <a href="#packaging">Packaging</a>
+                <a href="#ready-made">Ready-Made</a>
                 <a href="#builder">Build Your Hamper</a>
                 <a href="#story">Our Story</a>
                 <a href="#gallery">Gallery</a>
@@ -3289,6 +3298,22 @@
                             </div>
                         </div>
                     </article>
+
+                    <article class="product-card reveal">
+                        <div class="product-media">
+                            <span class="product-badge">New</span>
+                            <img src="Chocolate Orange Bark.jpeg" alt="Exotic Belgian Chocolates">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">6 pieces</div>
+                            <h3 class="product-title">Exotic Belgian Chocolates</h3>
+                            <p class="product-copy">Rich, velvety Belgian chocolates with exotic festive fillings.</p>
+                            <div class="product-footer">
+                                <span class="product-price">₹300</span>
+                                <a href="https://wa.me/917705982880?text=Hi!%20I%20would%20like%20to%20order%20Exotic%20Belgian%20Chocolates" class="order-link" target="_blank" rel="noopener noreferrer">Order</a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -3338,6 +3363,17 @@
                         <li>Outstation hampers will be sent for delivery from 28th to 30th October</li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <section id="ready-made" class="section-wrap">
+            <div class="section-head reveal">
+                <span class="section-tag">Ready-made hampers</span>
+                <h2 class="section-title">Bestseller combos, ready in one tap.</h2>
+                <p class="section-subtitle">Pick a combo to load it into the hamper builder. Prices shown with Standard (₹250) or Premium (₹400) packaging. Upgrade to premium for just ₹150 more.</p>
+            </div>
+            <div class="section-shell">
+                <div id="combo-grid" class="combo-grid"></div>
             </div>
         </section>
 
@@ -3986,7 +4022,17 @@
             { id: 'nan-khatai', name: 'Nan Khatai', size: '150 grams', price: 180, image: 'Nan Khatai_2.jpg', tag: 'Classic' },
             { id: 'seed-affair', name: 'Seed Affair', size: '125 grams', price: 250, image: 'The Seed Affair.jpeg', tag: 'Wholesome' },
             { id: 'espresso-thumbprint-cookies', name: 'Espresso Thumbprint Cookies', size: '250 grams', price: 250, image: 'Espresso Thumbprint cookies.jpg', tag: 'New' },
-            { id: 'multi-millet-crackers', name: 'Multi Millet Crackers', size: '150 grams', price: 250, image: 'Multi Millet Crackers.png', tag: 'Wholesome' }
+            { id: 'multi-millet-crackers', name: 'Multi Millet Crackers', size: '150 grams', price: 250, image: 'Multi Millet Crackers.png', tag: 'Wholesome' },
+            { id: 'belgian-chocolates', name: 'Exotic Belgian Chocolates', size: '6 pieces', price: 300, image: 'Chocolate Orange Bark.jpeg', tag: 'New' }
+        ];
+
+        const readyMadeHampers = [
+            { name: 'Sweet & Nostalgic Box', items: ['kaju-puri', 'nan-khatai', 'cinnamon-cookies'] },
+            { name: 'Taash Party Box', items: ['masala', 'makhana', 'cocktail'] },
+            { name: 'Grand Luxe Box', items: ['chocolate-orange-bark', 'barfi', 'quinoa', 'espresso-thumbprint-cookies', 'masala'] },
+            { name: 'Health & Wellness Box', items: ['seed-affair', 'multi-millet-crackers', 'quinoa', 'barfi'] },
+            { name: "Coffee & Chai Lover's Box", items: ['espresso-thumbprint-cookies', 'biscotti', 'cinnamon-cookies', 'nan-khatai'] },
+            { name: 'Traditional-Meets-Modern Box', items: ['kaju-puri', 'barfi', 'chocolate-orange-bark'] }
         ];
 
         const selectedItems = new Map();
@@ -4125,6 +4171,39 @@
                 };
                 renderSummary();
             });
+        });
+
+        const comboGrid = document.getElementById('combo-grid');
+        const formatINR = (n) => `₹${n.toLocaleString('en-IN')}`;
+        comboGrid.innerHTML = readyMadeHampers.map((combo, index) => {
+            const products = combo.items.map((id) => hamperCatalog.find((item) => item.id === id));
+            const subtotal = products.reduce((sum, item) => sum + item.price, 0);
+            return `
+                <article class="combo-card">
+                    <h3>${combo.name}</h3>
+                    <p>${products.map((item) => item.name).join(' · ')}</p>
+                    <div class="combo-prices">
+                        <span>Standard <strong>${formatINR(subtotal + packagingOptions.standard.price)}</strong></span>
+                        <span>Premium <strong>${formatINR(subtotal + packagingOptions.premium.price)}</strong></span>
+                    </div>
+                    <div class="combo-actions">
+                        <button type="button" class="btn-secondary" data-combo="${index}" data-pack="standard">Choose standard</button>
+                        <button type="button" class="btn-primary" data-combo="${index}" data-pack="premium">Choose premium</button>
+                    </div>
+                </article>`;
+        }).join('');
+        comboGrid.addEventListener('click', (event) => {
+            const button = event.target.closest('button[data-combo]');
+            if (!button) return;
+            const combo = readyMadeHampers[Number(button.dataset.combo)];
+            selectedItems.clear();
+            combo.items.forEach((id) => selectedItems.set(id, 1));
+            selectedBox = packagingOptions[button.dataset.pack];
+            const radio = document.querySelector(`input[name="packaging"][value="${button.dataset.pack}"]`);
+            if (radio) radio.checked = true;
+            renderHamperItems();
+            renderSummary();
+            document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
         });
 
         renderHamperItems();
