@@ -2989,6 +2989,12 @@
                 height: 250px;
             }
         }
+            .packaging-options { display: grid; gap: 0.5rem; margin: 0.6rem 0; }
+        .packaging-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.55rem 0.75rem; border: 1px solid rgba(128,93,104,0.25); border-radius: 12px; color: #70656b; }
+        .packaging-option span { flex: 1; }
+        .packaging-option strong { color: #805d68; }
+        .packaging-option input { accent-color: #805d68; }
+        .packaging-option:has(input:checked) { border-color: #805d68; background: rgba(128,93,104,0.08); }
     </style>
 </head>
 <body>
@@ -3158,7 +3164,7 @@
 
                     <article class="product-card reveal">
                         <div class="product-media">
-                            <span class="product-badge">Wellness</span>
+                            <span class="product-badge">Party</span>
                             <img src="Bombay Cocktail Mix.jpeg" alt="Bombay Cocktail Mix">
                         </div>
                         <div class="product-content">
@@ -3325,7 +3331,8 @@
                 <div class="packaging-info reveal">
                     <p><strong>Packaging design is subject to availability. Contact for more details.</strong></p>
                     <ul>
-                        <li>Standard packaging: ₹250</li>
+                        <li>Standard festive packaging: ₹250</li>
+                        <li>Premium packaging: ₹400 (upgrade any hamper for ₹150 more)</li>
                         <li>Delivery fees: at actuals</li>
                         <li>Last date of order: 25th October</li>
                         <li>Outstation hampers will be sent for delivery from 28th to 30th October</li>
@@ -3370,7 +3377,12 @@
                     </div>
 
                     <div class="packaging-info builder-packaging-info">
-                        <p><strong>Standard packaging: ₹250</strong></p>
+                        <p><strong>Choose your packaging</strong></p>
+                        <div class="packaging-options" role="radiogroup" aria-label="Packaging">
+                            <label class="packaging-option"><input type="radio" name="packaging" value="standard" checked> <span>Standard festive packaging</span> <strong>₹250</strong></label>
+                            <label class="packaging-option"><input type="radio" name="packaging" value="premium"> <span>Premium packaging</span> <strong>₹400</strong></label>
+                        </div>
+                        <p>Last date of order: 25th October · Outstation dispatch: 28th–30th October</p>
                         <p>Packaging design is subject to availability. Contact for more details.</p>
                     </div>
 
@@ -3967,7 +3979,7 @@
             { id: 'makhana', name: 'Italian Makhana Mix', size: '125 grams', price: 250, image: 'Italian .png', tag: 'Popular' },
             { id: 'barfi', name: 'Date and Fig Barfis', size: '150 grams', price: 250, image: 'Fig barfi.png', tag: 'Limited' },
             { id: 'quinoa', name: 'Quinoa Almond Rocks', size: '150 grams', price: 250, image: 'Quinoa Almond Rocks.png', tag: 'Fave' },
-            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'Bombay Cocktail Mix.jpeg', tag: 'Wellness' },
+            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'Bombay Cocktail Mix.jpeg', tag: 'Party' },
             { id: 'kaju-puri', name: 'Kaju Puri', size: '4 pieces · 150 grams', price: 150, image: 'Kaju Puri.jpeg', tag: 'Traditional' },
             { id: 'cinnamon-cookies', name: 'Cinnamon Sugar Cookies', size: '150 grams', price: 180, image: 'Cinnamon Sugar Cookies.png', tag: 'Baked' },
             { id: 'chocolate-orange-bark', name: 'Chocolate Orange Bark', size: '100 grams', price: 300, image: 'Chocolate Orange Bark.jpeg', tag: 'Indulgent' },
@@ -3980,7 +3992,16 @@
         const selectedItems = new Map();
         let hamperCount = 1;
 
-        let selectedBox = { name: 'Standard packaging', price: 250 };
+        const packagingOptions = {
+            standard: { name: 'Standard festive packaging', price: 250 },
+            premium: { name: 'Premium packaging', price: 400 }
+        };
+        let selectedBox = packagingOptions.standard;
+        document.querySelectorAll('input[name="packaging"]').forEach((input) => {
+            input.addEventListener('change', () => {
+                if (input.checked) { selectedBox = packagingOptions[input.value]; renderSummary(); }
+            });
+        });
 
         const hamperBuilder = document.getElementById('hamper-builder');
         const selectedItemsContainer = document.getElementById('selected-items');
