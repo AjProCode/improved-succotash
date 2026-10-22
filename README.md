@@ -9,7 +9,7 @@ Bake Me A Wish is designed to feel warm, premium, and celebratory. The page high
 ## Features
 
 - Elegant hero section with strong festive branding
-- Curated product gallery for premium sweet and snack items
+- Curated product gallery for premium sweet, snack, and festive hamper items
 - Hamper packaging gallery showcasing available festive presentation styles
 - Auto-rotating, seamless infinite photo gallery with manual arrows, dots, touch swipes, and keyboard controls
 - Interactive hamper builder for selecting treats and placing orders with packaging details included

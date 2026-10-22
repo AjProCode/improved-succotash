@@ -656,6 +656,32 @@
             backdrop-filter: blur(12px);
         }
 
+        .product-card.sold-out {
+            opacity: 0.82;
+        }
+
+        .product-card.sold-out .product-media::after {
+            content: "Sold out";
+            right: 1rem;
+            bottom: 1rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(46, 37, 34, 0.82);
+            font-family: var(--font-body);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .sold-out-label {
+            color: var(--color-text-soft);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
         .product-content {
             padding: 1.2rem 1.2rem 1.4rem;
             display: flex;
@@ -1187,6 +1213,60 @@
             color: var(--color-terracotta-deep);
             font-size: 0.72rem;
             font-weight: 700;
+        }
+
+        .hamper-addons {
+            margin-top: 1.5rem;
+        }
+
+        .hamper-addon {
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            border: 1px solid rgba(33,27,24,0.14);
+            border-radius: 18px;
+            padding: 0.65rem 0.8rem;
+            display: grid;
+            grid-template-columns: 58px 1fr auto;
+            gap: 0.75rem;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hamper-addon:hover,
+        .hamper-addon.selected {
+            border-color: #a97883;
+        }
+
+        .hamper-addon.selected {
+            background: #f5ebe7;
+        }
+
+        .hamper-addon img {
+            width: 58px;
+            height: 58px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .hamper-addon h4 {
+            font-size: 1rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .hamper-addon p {
+            color: #5f5550;
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .hamper-addon .tag {
+            color: #805d68;
+            font-size: 0.72rem;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         .builder-options {
@@ -1948,7 +2028,7 @@
             }
         }
 
-        /* A balanced 4 + 4 + 4 + 1 collection rhythm for the 13-product range. */
+        /* Keep the collection cards in a balanced four-column rhythm. */
         .products-grid {
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 1.5rem;
@@ -3074,7 +3154,7 @@
             </div>
 
             <div class="section-shell">
-                <div class="collection-marker" aria-label="Thirteen festive treats">13<br>festive<br>treats</div>
+                <div class="collection-marker" aria-label="Sixteen festive treats and hampers">16<br>festive<br>picks</div>
                 <div class="products-grid">
                     <article class="product-card reveal">
                         <div class="product-media">
@@ -3283,6 +3363,51 @@
                             </div>
                         </div>
                     </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.58.14.jpeg" alt="Diwali Celebration Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Diwali Celebration Hamper</h3>
+                            <p class="product-copy">A vibrant festive gift box designed for thoughtful Diwali sharing.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.59.21.jpeg" alt="Happy Diwali Treats Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Happy Diwali Treats Hamper</h3>
+                            <p class="product-copy">A generous selection of handcrafted treats, ready to gift and share.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.59.45.jpeg" alt="Golden Diwali Gift Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Golden Diwali Gift Hamper</h3>
+                            <p class="product-copy">A polished festive box that brings colour, warmth, and celebration together.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -3345,6 +3470,10 @@
                 <div class="hamper-panel">
                     <div class="section-tag builder-label">Choose your treats</div>
                     <div id="hamper-builder" class="hamper-grid"></div>
+                    <div class="hamper-addons">
+                        <div class="section-tag builder-label">Optional festive add-ons</div>
+                        <div id="hamper-addons" class="hamper-grid"></div>
+                    </div>
                 </div>
 
                 <aside class="summary-panel">
@@ -3978,11 +4107,17 @@
         ];
 
         const selectedItems = new Map();
+        const hamperAddonsCatalog = [
+            { id: 'playing-cards', name: 'Playing Cards', size: 'Per deck', price: 250, image: '81nCaMh5n7L._SL1500_.jpg' },
+            { id: 'festive-diya', name: 'Festive Diya', size: 'Per diya', price: 80, image: 'WhatsApp Image 2026-10-22 at 17.57.14.jpeg' }
+        ];
+        const selectedAddOns = new Map();
         let hamperCount = 1;
 
         let selectedBox = { name: 'Standard packaging', price: 250 };
 
         const hamperBuilder = document.getElementById('hamper-builder');
+        const hamperAddons = document.getElementById('hamper-addons');
         const selectedItemsContainer = document.getElementById('selected-items');
         const totalPriceEl = document.getElementById('total-price');
         const hamperOrderButton = document.getElementById('hamper-order');
@@ -4004,13 +4139,31 @@
             }).join('');
         }
 
+        function renderHamperAddons() {
+            hamperAddons.innerHTML = hamperAddonsCatalog.map((addon) => {
+                const selected = selectedAddOns.has(addon.id) ? 'selected' : '';
+                return `
+                    <button class="hamper-addon ${selected}" type="button" data-addon-id="${addon.id}">
+                        <img src="${addon.image}" alt="${addon.name}">
+                        <div>
+                            <h4>${addon.name}</h4>
+                            <p>${addon.size} · Optional</p>
+                        </div>
+                        <span class="tag">₹${addon.price}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
         function renderSummary() {
             const items = hamperCatalog.filter((item) => selectedItems.has(item.id));
+            const addons = hamperAddonsCatalog.filter((addon) => selectedAddOns.has(addon.id));
             const subtotal = items.reduce((sum, item) => sum + item.price * (selectedItems.get(item.id) || 1), 0);
-            const total = (subtotal + selectedBox.price) * hamperCount;
+            const addonsSubtotal = addons.reduce((sum, addon) => sum + addon.price * (selectedAddOns.get(addon.id) || 1), 0);
+            const total = (subtotal + addonsSubtotal + selectedBox.price) * hamperCount;
 
-            selectedItemsContainer.innerHTML = items.length
-                ? `${items.map((item) => `
+            const selectedContent = [
+                ...items.map((item) => `
                     <div class="selected-item">
                         <div class="selected-label">
                             <span class="selected-dot"></span>
@@ -4022,15 +4175,23 @@
                             <button type="button" data-quantity-action="increase" data-item-id="${item.id}" aria-label="Increase ${item.name} quantity">+</button>
                         </div>
                     </div>
-                `).join('')}
-                    <div class="selected-item packaging-charge">
+                `),
+                ...addons.map((addon) => `
+                    <div class="selected-item">
                         <div class="selected-label">
                             <span class="selected-dot"></span>
-                            <span>${selectedBox.name}</span>
+                            <span>${addon.name} ×${selectedAddOns.get(addon.id) || 1}</span>
                         </div>
-                        <strong>₹${selectedBox.price * hamperCount}</strong>
-                    </div>`
-                : `<div class="empty-state">Select a few treats to begin your hamper.</div>
+                        <div class="quantity-control">
+                            <button type="button" data-quantity-action="decrease-addon" data-addon-id="${addon.id}" aria-label="Decrease ${addon.name} quantity">−</button>
+                            <span>${selectedAddOns.get(addon.id) || 1}</span>
+                            <button type="button" data-quantity-action="increase-addon" data-addon-id="${addon.id}" aria-label="Increase ${addon.name} quantity">+</button>
+                        </div>
+                    </div>
+                `)
+            ].join('');
+
+            selectedItemsContainer.innerHTML = `${selectedContent || '<div class="empty-state">Select a few treats or optional add-ons to begin your hamper.</div>'}
                     <div class="selected-item packaging-charge">
                         <div class="selected-label">
                             <span class="selected-dot"></span>
@@ -4041,9 +4202,11 @@
 
             totalPriceEl.textContent = `₹${total}`;
 
-            const message = items.length
-                ? encodeURIComponent(`Hi! I would like to build ${hamperCount} hamper${hamperCount === 1 ? '' : 's'}: ${items.map((item) => `${item.name} x${(selectedItems.get(item.id) || 1) * hamperCount}`).join(', ')}. Packaging: ${selectedBox.name} x${hamperCount} (₹${selectedBox.price * hamperCount}). Total: ₹${total} + shipping at actuals.`)
-                : encodeURIComponent(`Hi! I would like to build a custom festive hamper. Packaging: ${selectedBox.name} (₹${selectedBox.price}) + shipping at actuals.`);
+            const selectedDescription = [
+                ...items.map((item) => `${item.name} x${(selectedItems.get(item.id) || 1) * hamperCount}`),
+                ...addons.map((addon) => `${addon.name} x${(selectedAddOns.get(addon.id) || 1) * hamperCount}`)
+            ].join(', ');
+            const message = encodeURIComponent(`Hi! I would like to build ${hamperCount} hamper${hamperCount === 1 ? '' : 's'}${selectedDescription ? `: ${selectedDescription}` : ''}. Packaging: ${selectedBox.name} x${hamperCount} (₹${selectedBox.price * hamperCount}). Total: ₹${total} + shipping at actuals.`);
 
             hamperOrderButton.href = `https://wa.me/917705982880?text=${message}`;
             hamperCountValue.textContent = hamperCount;
@@ -4064,23 +4227,41 @@
             renderSummary();
         });
 
+        hamperAddons.addEventListener('click', (event) => {
+            const button = event.target.closest('.hamper-addon');
+            if (!button) return;
+
+            const id = button.dataset.addonId;
+            if (selectedAddOns.has(id)) {
+                selectedAddOns.delete(id);
+            } else {
+                selectedAddOns.set(id, 1);
+            }
+
+            renderHamperAddons();
+            renderSummary();
+        });
+
         selectedItemsContainer.addEventListener('click', (event) => {
             const button = event.target.closest('[data-quantity-action]');
             if (!button) return;
 
-            const id = button.dataset.itemId;
-            const currentQuantity = selectedItems.get(id) || 1;
-            const nextQuantity = button.dataset.quantityAction === 'increase'
+            const isAddon = button.dataset.quantityAction.endsWith('-addon');
+            const id = isAddon ? button.dataset.addonId : button.dataset.itemId;
+            const selection = isAddon ? selectedAddOns : selectedItems;
+            const currentQuantity = selection.get(id) || 1;
+            const nextQuantity = button.dataset.quantityAction.startsWith('increase')
                 ? currentQuantity + 1
                 : currentQuantity - 1;
 
             if (nextQuantity < 1) {
-                selectedItems.delete(id);
+                selection.delete(id);
             } else {
-                selectedItems.set(id, nextQuantity);
+                selection.set(id, nextQuantity);
             }
 
             renderHamperItems();
+            renderHamperAddons();
             renderSummary();
         });
 
@@ -4107,6 +4288,7 @@
         });
 
         renderHamperItems();
+        renderHamperAddons();
         renderSummary();
     </script>
 </body>
