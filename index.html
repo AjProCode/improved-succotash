@@ -3069,135 +3069,7 @@
                 height: 250px;
             }
         }
-            .packaging-options { display: grid; gap: 0.5rem; margin: 0.6rem 0; }
-        .packaging-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.55rem 0.75rem; border: 1px solid rgba(128,93,104,0.25); border-radius: 12px; color: #70656b; }
-        .packaging-option span { flex: 1; }
-        .packaging-option strong { color: #805d68; }
-        .packaging-option input { accent-color: #805d68; }
-        .packaging-option:has(input:checked) { border-color: #805d68; background: rgba(128,93,104,0.08); }
-        .combo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
-        .combo-card { background: #fffaf2; border: 1px solid rgba(128,93,104,0.2); border-radius: 18px; padding: 1.3rem; display: flex; flex-direction: column; gap: 0.7rem; }
-        .combo-card h3 { color: #373036; margin: 0; }
-        .combo-card p { color: #70656b; margin: 0; flex: 1; }
-        .combo-prices { display: flex; justify-content: space-between; color: #70656b; }
-        .combo-prices strong { color: #805d68; display: block; font-size: 1.15rem; }
-        .combo-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .combo-actions button { flex: 1; cursor: pointer; }
-        /* ===== Premium Diwali polish layer (final overrides) ===== */
-        :root {
-            --gold-1: #e9cf94; --gold-2: #c9a35a; --gold-3: #a88c56;
-            --mauve-1: #b88991; --mauve-2: #805d68; --mauve-3: #4a353d;
-            --cream: #fffaf2; --ease-out: cubic-bezier(.22,1,.36,1);
-            --shadow-soft: 0 10px 30px -12px rgba(74,53,61,.25);
-            --shadow-lift: 0 22px 45px -18px rgba(74,53,61,.38);
-        }
-        body .section-title { letter-spacing: -0.015em; text-wrap: balance; }
-        body .section-subtitle { text-wrap: pretty; max-width: 62ch; margin-inline: auto; }
-        body .section-tag { letter-spacing: .22em; }
-        body .section-head .section-tag::before,
-        body .section-head .section-tag::after { content: "✦"; color: var(--gold-2); margin: 0 .6em; font-size: .8em; }
-        body .hero-title span { background: linear-gradient(100deg, var(--mauve-2), #b8644d 45%, var(--gold-2) 70%, var(--mauve-2)); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer-text 8s ease-in-out infinite; }
-        @keyframes shimmer-text { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        body .hero { position: relative; isolation: isolate; }
-        .sparkle-field { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .sparkle-field i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle, #fff6d8 0, var(--gold-1) 40%, transparent 70%); opacity: 0; animation: twinkle 4.5s ease-in-out infinite; }
-        @keyframes twinkle { 0%,100% { opacity: 0; transform: scale(.4); } 45% { opacity: .9; transform: scale(1.2); } }
-        body .hero-grid { position: relative; z-index: 1; }
-        body .eyebrow::before { box-shadow: 0 0 0 0 rgba(233,207,148,.7); animation: diya-glow 2.8s ease-in-out infinite; }
-        @keyframes diya-glow { 0%,100% { box-shadow: 0 0 6px 1px rgba(242,184,75,.55); } 50% { box-shadow: 0 0 14px 4px rgba(242,184,75,.85); } }
-        body .visual-frame, body .showcase-card { transition: transform .8s var(--ease-out), box-shadow .8s var(--ease-out); }
-        body .hero-visual:hover .showcase-card { transform: translateY(-6px) rotate(-.4deg); }
-
-        /* Buttons: micro-interactions */
-        body .btn-primary, body .btn-secondary, body .order-link, body .mini-order, body .combo-actions button {
-            position: relative; overflow: hidden;
-            transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background-color .35s, color .35s, border-color .35s;
-        }
-        body .btn-primary { background-image: linear-gradient(135deg, var(--mauve-1), var(--mauve-2)); box-shadow: 0 10px 22px -10px rgba(128,93,104,.7), inset 0 0 0 1px rgba(233,207,148,.35); }
-        body .btn-primary::after, body .combo-actions .btn-primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,246,216,.45) 50%, transparent 70%); transform: translateX(-120%); transition: transform .8s var(--ease-out); pointer-events: none; }
-        body .btn-primary:hover::after { transform: translateX(120%); }
-        body .btn-primary:hover, body .btn-secondary:hover, body .combo-actions button:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
-        body .btn-secondary:hover { border-color: var(--gold-2); }
-        body .btn-primary:active, body .btn-secondary:active, body .combo-actions button:active, body .order-link:active { transform: translateY(0) scale(.97); }
-        body :is(a,button,input):focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; }
-
-        /* Product grid & cards */
-        body .product-card { border-radius: 22px; border: 1px solid rgba(168,140,86,.18); box-shadow: var(--shadow-soft); transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out), border-color .5s; }
-        body .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lift); border-color: rgba(201,163,90,.55); }
-        body .product-card .product-media { overflow: hidden; }
-        body .product-card .product-media img { transition: transform 1.1s var(--ease-out); }
-        body .product-card:hover .product-media img { transform: scale(1.06); }
-        body .product-badge { background: linear-gradient(135deg, var(--mauve-3), var(--mauve-2)); color: var(--gold-1); border: 1px solid rgba(233,207,148,.4); }
-        body .product-price { color: var(--mauve-2); font-family: var(--font-heading); font-size: 1.35rem; }
-        body .product-title { text-wrap: balance; }
-
-        /* Ready-made hampers */
-        body #ready-made .combo-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 1.4rem; }
-        body #ready-made .combo-card { position: relative; padding: 1.6rem 1.5rem 1.4rem; border-radius: 22px; background: linear-gradient(180deg, #fffdf8, #fbf3ea); border: 1px solid rgba(168,140,86,.22); box-shadow: var(--shadow-soft); transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out), border-color .5s; overflow: hidden; }
-        body #ready-made .combo-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--mauve-1), var(--gold-1), var(--mauve-1)); }
-        body #ready-made .combo-card::after { content: "🪔"; position: absolute; top: 1.1rem; right: 1.2rem; font-size: 1.15rem; filter: drop-shadow(0 0 6px rgba(242,184,75,.6)); animation: flicker 3.2s ease-in-out infinite; }
-        @keyframes flicker { 0%,100% { opacity: 1; transform: scale(1); } 40% { opacity: .82; transform: scale(.97) rotate(-2deg); } 60% { opacity: 1; transform: scale(1.03) rotate(1deg); } }
-        body #ready-made .combo-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lift); border-color: rgba(201,163,90,.6); }
-        body #ready-made .combo-card h3 { font-family: var(--font-heading); font-size: 1.35rem; padding-right: 2rem; }
-        body #ready-made .combo-card p { font-size: .92rem; line-height: 1.6; }
-        body #ready-made .combo-prices { gap: .6rem; padding: .85rem 0; border-top: 1px dashed rgba(168,140,86,.35); border-bottom: 1px dashed rgba(168,140,86,.35); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
-        body #ready-made .combo-prices span:last-child { text-align: right; }
-        body #ready-made .combo-prices strong { font-family: var(--font-heading); font-size: 1.45rem; letter-spacing: 0; text-transform: none; }
-        body #ready-made .combo-prices span:last-child strong { color: var(--gold-3); }
-        body #ready-made .combo-actions button { min-height: 44px; font-size: .72rem; }
-
-        /* Build your hamper */
-        @media (min-width: 981px) {
-            body #builder .summary-panel { position: sticky; top: 96px; align-self: start; max-height: calc(100vh - 116px); overflow-y: auto; scrollbar-width: thin; }
-        }
-        body #builder .summary-panel { border: 1px solid rgba(201,163,90,.35); box-shadow: var(--shadow-lift); }
-        body #builder .hamper-count-control { background: rgba(128,93,104,.08); color: var(--mauve-3); }
-        body #builder .hamper-count-control span { color: var(--mauve-3); }
-        body #builder .hamper-item { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), border-color .35s, background-color .35s; }
-        body #builder .hamper-item:hover { transform: translateY(-3px); }
-        body #builder .hamper-item.selected { border-color: var(--gold-2); box-shadow: 0 0 0 2px rgba(201,163,90,.35), var(--shadow-soft); }
-        body #builder .hamper-item.selected::after { content: "✓"; position: absolute; top: .5rem; right: .6rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; background: var(--mauve-2); color: var(--gold-1); animation: pop .35s var(--ease-out); }
-        body #builder .hamper-item { position: relative; }
-        body #builder .hamper-item.selected h4 { padding-right: 1.4rem; }
-        @keyframes pop { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        body #builder .summary-total strong { font-size: 2rem; }
-        body #total-price.bump { animation: bump .45s var(--ease-out); }
-        @keyframes bump { 40% { transform: scale(1.12); color: var(--gold-3); } }
-        body .full-width-order { min-height: 52px; font-size: .85rem; }
-
-        /* Mobile sticky order bar */
-        .mobile-order-bar { display: none; }
-        @media (max-width: 980px) {
-            .mobile-order-bar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .65rem .7rem .65rem 1.1rem; border-radius: 18px; background: rgba(74,53,61,.94); color: var(--cream); box-shadow: 0 18px 40px -14px rgba(0,0,0,.45); backdrop-filter: blur(10px); transform: translateY(140%); transition: transform .5s var(--ease-out); }
-            .mobile-order-bar.visible { transform: translateY(0); }
-            .mobile-order-bar small { display: block; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-1); }
-            .mobile-order-bar strong { font-family: var(--font-heading); font-size: 1.35rem; }
-            .mobile-order-bar a { padding: .75rem 1.1rem; border-radius: 12px; background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); color: var(--mauve-3); font-weight: 700; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
-            body.order-bar-on .whatsapp-float { bottom: 92px !important; transition: bottom .4s; }
-            body.order-bar-on .audio-toggle { bottom: 160px !important; transition: bottom .4s; }
-        }
-
-        /* Mobile-first spacing */
-        @media (max-width: 640px) {
-            body .section-wrap { padding-inline: 1.1rem; }
-            body .section-title { font-size: clamp(2rem, 8.5vw, 2.6rem); }
-            body #ready-made .combo-card { padding: 1.3rem 1.2rem 1.2rem; }
-            body .hero-title { font-size: clamp(2.6rem, 12vw, 3.2rem); }
-        }
-
-        /* Scroll reveal variants */
-        body .reveal { transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
-        body .reveal.from-left:not(.active) { transform: translateX(-28px); }
-        body .reveal.from-right:not(.active) { transform: translateX(28px); }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-            body .reveal { opacity: 1 !important; transform: none !important; }
-            .sparkle-field { display: none; }
-            body .hero-title span { background-position: 0 50%; }
-        }
     </style>
-    <script>window.BELGIAN_PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><defs><radialGradient id='g' cx='50%' cy='45%' r='75%'><stop offset='0' stop-color='%23f6e7d0'/><stop offset='.55' stop-color='%23d9b6a8'/><stop offset='1' stop-color='%23805d68'/></radialGradient><radialGradient id='f' cx='50%' cy='60%' r='50%'><stop offset='0' stop-color='%23fff3c4'/><stop offset='.5' stop-color='%23f2b84b'/><stop offset='1' stop-color='%23e0703a' stop-opacity='0'/></radialGradient></defs><rect width='800' height='600' fill='url(%23g)'/><g fill='%23fff6e2' opacity='.7'><circle cx='140' cy='120' r='3'/><circle cx='660' cy='150' r='4'/><circle cx='590' cy='90' r='2'/><circle cx='210' cy='470' r='3'/><circle cx='700' cy='420' r='2.5'/></g><circle cx='400' cy='215' r='70' fill='url(%23f)'/><path d='M400 165c22 30 26 52 0 78-26-26-22-48 0-78z' fill='%23ffd27a'/><path d='M300 275h200c-8 48-48 78-100 78s-92-30-100-78z' fill='%23b8644d'/><path d='M300 275h200' stroke='%23d2bd8a' stroke-width='8' stroke-linecap='round'/><g fill='%233b2a2e'><rect x='250' y='385' width='70' height='52' rx='12'/><rect x='365' y='385' width='70' height='52' rx='12'/><rect x='480' y='385' width='70' height='52' rx='12'/></g><text x='400' y='510' font-family='Georgia,serif' font-size='34' fill='%23fffaf2' text-anchor='middle'>Photo coming soon</text></svg>";</script>
 </head>
 <body>
     <header id="main-header">
@@ -3215,7 +3087,6 @@
                 <a href="#hero">Home</a>
                 <a href="#products">Collection</a>
                 <a href="#packaging">Packaging</a>
-                <a href="#ready-made">Ready-Made</a>
                 <a href="#builder">Build Your Hamper</a>
                 <a href="#story">Our Story</a>
                 <a href="#gallery">Gallery</a>
@@ -3283,7 +3154,7 @@
             </div>
 
             <div class="section-shell">
-                <div class="collection-marker" aria-label="Thirteen festive treats">13<br>festive<br>treats</div>
+                <div class="collection-marker" aria-label="Sixteen festive treats and hampers">16<br>festive<br>picks</div>
                 <div class="products-grid">
                     <article class="product-card reveal">
                         <div class="product-media">
@@ -3367,7 +3238,7 @@
 
                     <article class="product-card reveal">
                         <div class="product-media">
-                            <span class="product-badge">Party</span>
+                            <span class="product-badge">Wellness</span>
                             <img src="Bombay Cocktail Mix.jpeg" alt="Bombay Cocktail Mix">
                         </div>
                         <div class="product-content">
@@ -3492,6 +3363,51 @@
                             </div>
                         </div>
                     </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.58.14.jpeg" alt="Diwali Celebration Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Diwali Celebration Hamper</h3>
+                            <p class="product-copy">A vibrant festive gift box designed for thoughtful Diwali sharing.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.59.21.jpeg" alt="Happy Diwali Treats Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Happy Diwali Treats Hamper</h3>
+                            <p class="product-copy">A generous selection of handcrafted treats, ready to gift and share.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card sold-out reveal">
+                        <div class="product-media">
+                            <span class="product-badge">Sold out</span>
+                            <img src="WhatsApp Image 2026-10-22 at 14.59.45.jpeg" alt="Golden Diwali Gift Hamper">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-meta">Festive hamper</div>
+                            <h3 class="product-title">Golden Diwali Gift Hamper</h3>
+                            <p class="product-copy">A polished festive box that brings colour, warmth, and celebration together.</p>
+                            <div class="product-footer">
+                                <span class="sold-out-label">Currently unavailable</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -3534,24 +3450,12 @@
                 <div class="packaging-info reveal">
                     <p><strong>Packaging design is subject to availability. Contact for more details.</strong></p>
                     <ul>
-                        <li>Standard festive packaging: ₹250</li>
-                        <li>Premium packaging: ₹400 (upgrade any hamper for ₹150 more)</li>
+                        <li>Standard packaging: ₹250</li>
                         <li>Delivery fees: at actuals</li>
                         <li>Last date of order: 25th October</li>
                         <li>Outstation hampers will be sent for delivery from 28th to 30th October</li>
                     </ul>
                 </div>
-            </div>
-        </section>
-
-        <section id="ready-made" class="section-wrap">
-            <div class="section-head reveal">
-                <span class="section-tag">Ready-made hampers</span>
-                <h2 class="section-title">Bestseller combos, ready in one tap.</h2>
-                <p class="section-subtitle">Pick a combo to load it into the hamper builder. Prices shown with Standard (₹250) or Premium (₹400) packaging. Upgrade to premium for just ₹150 more.</p>
-            </div>
-            <div class="section-shell">
-                <div id="combo-grid" class="combo-grid"></div>
             </div>
         </section>
 
@@ -3595,12 +3499,7 @@
                     </div>
 
                     <div class="packaging-info builder-packaging-info">
-                        <p><strong>Choose your packaging</strong></p>
-                        <div class="packaging-options" role="radiogroup" aria-label="Packaging">
-                            <label class="packaging-option"><input type="radio" name="packaging" value="standard" checked> <span>Standard festive packaging</span> <strong>₹250</strong></label>
-                            <label class="packaging-option"><input type="radio" name="packaging" value="premium"> <span>Premium packaging</span> <strong>₹400</strong></label>
-                        </div>
-                        <p>Last date of order: 25th October · Outstation dispatch: 28th–30th October</p>
+                        <p><strong>Standard packaging: ₹250</strong></p>
                         <p>Packaging design is subject to availability. Contact for more details.</p>
                     </div>
 
@@ -3891,11 +3790,6 @@
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
-
-    <div class="mobile-order-bar" id="mobile-order-bar" aria-live="polite">
-        <div><small>Your hamper</small><strong id="mobile-order-total">₹0</strong></div>
-        <a id="mobile-order-link" href="#builder">Review &amp; send</a>
-    </div>
 
     <div id="audio-gate" class="audio-gate" role="dialog" aria-modal="true" aria-label="Enter Bake Me A Wish">
         <img src="logo.png" alt="Bake Me A Wish logo">
@@ -4202,24 +4096,14 @@
             { id: 'makhana', name: 'Italian Makhana Mix', size: '125 grams', price: 250, image: 'Italian .png', tag: 'Popular' },
             { id: 'barfi', name: 'Date and Fig Barfis', size: '150 grams', price: 250, image: 'Fig barfi.png', tag: 'Limited' },
             { id: 'quinoa', name: 'Quinoa Almond Rocks', size: '150 grams', price: 250, image: 'Quinoa Almond Rocks.png', tag: 'Fave' },
-            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'Bombay Cocktail Mix.jpeg', tag: 'Party' },
+            { id: 'cocktail', name: 'Bombay Cocktail Mix', size: '125 grams', price: 250, image: 'Bombay Cocktail Mix.jpeg', tag: 'Wellness' },
             { id: 'kaju-puri', name: 'Kaju Puri', size: '4 pieces · 150 grams', price: 150, image: 'Kaju Puri.jpeg', tag: 'Traditional' },
             { id: 'cinnamon-cookies', name: 'Cinnamon Sugar Cookies', size: '150 grams', price: 180, image: 'Cinnamon Sugar Cookies.png', tag: 'Baked' },
             { id: 'chocolate-orange-bark', name: 'Chocolate Orange Bark', size: '100 grams', price: 300, image: 'Chocolate Orange Bark.jpeg', tag: 'Indulgent' },
             { id: 'nan-khatai', name: 'Nan Khatai', size: '150 grams', price: 180, image: 'Nan Khatai_2.jpg', tag: 'Classic' },
             { id: 'seed-affair', name: 'Seed Affair', size: '125 grams', price: 250, image: 'The Seed Affair.jpeg', tag: 'Wholesome' },
             { id: 'espresso-thumbprint-cookies', name: 'Espresso Thumbprint Cookies', size: '250 grams', price: 250, image: 'Espresso Thumbprint cookies.jpg', tag: 'New' },
-            { id: 'multi-millet-crackers', name: 'Multi Millet Crackers', size: '150 grams', price: 250, image: 'Multi Millet Crackers.png', tag: 'Wholesome' },
-            { id: 'belgian-chocolates', name: 'Exotic Belgian Chocolates', size: '6 pieces', price: 300, image: 'Belgian Chocolates.jpeg', tag: 'New' }
-        ];
-
-        const readyMadeHampers = [
-            { name: 'Sweet & Nostalgic Box', items: ['kaju-puri', 'nan-khatai', 'cinnamon-cookies'] },
-            { name: 'Taash Party Box', items: ['masala', 'makhana', 'cocktail'] },
-            { name: 'Grand Luxe Box', items: ['chocolate-orange-bark', 'barfi', 'quinoa', 'espresso-thumbprint-cookies', 'masala'] },
-            { name: 'Health & Wellness Box', items: ['seed-affair', 'multi-millet-crackers', 'quinoa', 'barfi'] },
-            { name: "Coffee & Chai Lover's Box", items: ['espresso-thumbprint-cookies', 'biscotti', 'cinnamon-cookies', 'nan-khatai'] },
-            { name: 'Traditional-Meets-Modern Box', items: ['kaju-puri', 'barfi', 'chocolate-orange-bark'] }
+            { id: 'multi-millet-crackers', name: 'Multi Millet Crackers', size: '150 grams', price: 250, image: 'Multi Millet Crackers.png', tag: 'Wholesome' }
         ];
 
         const selectedItems = new Map();
@@ -4230,16 +4114,7 @@
         const selectedAddOns = new Map();
         let hamperCount = 1;
 
-        const packagingOptions = {
-            standard: { name: 'Standard festive packaging', price: 250 },
-            premium: { name: 'Premium packaging', price: 400 }
-        };
-        let selectedBox = packagingOptions.standard;
-        document.querySelectorAll('input[name="packaging"]').forEach((input) => {
-            input.addEventListener('change', () => {
-                if (input.checked) { selectedBox = packagingOptions[input.value]; renderSummary(); }
-            });
-        });
+        let selectedBox = { name: 'Standard packaging', price: 250 };
 
         const hamperBuilder = document.getElementById('hamper-builder');
         const hamperAddons = document.getElementById('hamper-addons');
@@ -4253,7 +4128,7 @@
                 const selected = selectedItems.has(item.id) ? 'selected' : '';
                 return `
                     <button class="hamper-item ${selected}" type="button" data-item-id="${item.id}">
-                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src=window.BELGIAN_PLACEHOLDER;">
+                        <img src="${item.image}" alt="${item.name}">
                         <div>
                             <h4>${item.name}</h4>
                             <p>${item.size} · ${item.tag}</p>
@@ -4413,6 +4288,7 @@
         });
 
         renderHamperItems();
+        renderHamperAddons();
         renderSummary();
     </script>
 </body>
