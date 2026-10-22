@@ -10,9 +10,9 @@ Bake Me A Wish is designed to feel warm, premium, and celebratory. The page high
 
 - Elegant hero section with strong festive branding
 - Curated product gallery for premium sweet, snack, and festive hamper items
-- Sixteen collection picks, including three clearly marked sold-out hampers using the current box photos
+- Thirteen curated collection picks
 - Hamper packaging gallery showcasing available festive presentation styles
-- Lookbook gallery featuring the current sold-out hamper box photos
+- Lookbook gallery featuring the current festive hamper collection
 - Auto-rotating, seamless infinite photo gallery with manual arrows, dots, touch swipes, and keyboard controls
 - Interactive hamper builder for selecting treats and placing orders with packaging details included
 - Standard packaging at ₹250 or premium packaging at ₹400
@@ -66,7 +66,7 @@ You can easily adapt the project by editing:
 
 This project is intentionally lightweight and dependency-free, making it ideal for quick deployment as a static marketing or storefront landing page.
 
-Packaging details are also included in the storefront and may vary by availability, with standard packaging at ₹250, premium packaging at ₹400, delivery fees at actuals, last order date 25th October, and outstation hampers dispatched between 28th and 30th October. The three current sold-out hamper cards and lookbook entries use the attached 10 October box photos.
+Packaging details are also included in the storefront and may vary by availability, with standard packaging at ₹250, premium packaging at ₹400, delivery fees at actuals, last order date 25th October, and outstation hampers dispatched between 28th and 30th October.
 
 ## Contact / business link
 
