@@ -3079,6 +3079,10 @@
         .combo-card { background: #fffaf2; border: 1px solid rgba(128,93,104,0.2); border-radius: 18px; padding: 1.3rem; display: flex; flex-direction: column; gap: 0.7rem; }
         .combo-card h3 { color: #373036; margin: 0; }
         .combo-card p { color: #70656b; margin: 0; flex: 1; }
+        .combo-card-image { width: 100%; aspect-ratio: 1.35; object-fit: cover; border-radius: 14px; }
+        .combo-card.sold-out { opacity: 0.8; }
+        .combo-card.sold-out .combo-card-image { filter: saturate(0.82); }
+        .combo-status { color: var(--mauve-2); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
         .combo-prices { display: flex; justify-content: space-between; color: #70656b; }
         .combo-prices strong { color: #805d68; display: block; font-size: 1.15rem; }
         .combo-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -4283,12 +4287,12 @@
         ];
 
         const readyMadeHampers = [
-            { name: 'Sweet & Nostalgic Box', items: ['kaju-puri', 'nan-khatai', 'cinnamon-cookies'] },
-            { name: 'Taash Party Box', items: ['masala', 'makhana', 'cocktail'] },
-            { name: 'Grand Luxe Box', items: ['chocolate-orange-bark', 'barfi', 'quinoa', 'espresso-thumbprint-cookies', 'masala'] },
-            { name: 'Health & Wellness Box', items: ['seed-affair', 'multi-millet-crackers', 'quinoa', 'barfi'] },
-            { name: "Coffee & Chai Lover's Box", items: ['espresso-thumbprint-cookies', 'biscotti', 'cinnamon-cookies', 'nan-khatai'] },
-            { name: 'Traditional-Meets-Modern Box', items: ['kaju-puri', 'barfi', 'chocolate-orange-bark'] }
+            { name: 'Sweet & Nostalgic Box', items: ['kaju-puri', 'nan-khatai', 'cinnamon-cookies'], image: 'Kaju Puri.jpeg' },
+            { name: 'Taash Party Box', items: ['masala', 'makhana', 'cocktail'], image: '81nCaMh5n7L._SL1500_.jpg' },
+            { name: 'Grand Luxe Box', items: ['chocolate-orange-bark', 'barfi', 'quinoa', 'espresso-thumbprint-cookies', 'masala'], image: 'Chocolate Orange Bark.jpeg' },
+            { name: 'Diwali Celebration Hamper', items: [], image: 'WhatsApp Image 2026-10-10 at 21.56.44 (3).jpeg', soldOut: true },
+            { name: 'Happy Diwali Treats Hamper', items: [], image: 'WhatsApp Image 2026-10-10 at 21.56.44 (2).jpeg', soldOut: true },
+            { name: 'Golden Diwali Gift Hamper', items: [], image: 'WhatsApp Image 2026-10-10 at 21.56.43 (5).jpeg', soldOut: true }
         ];
 
         const selectedItems = new Map();
@@ -4316,6 +4320,29 @@
         const totalPriceEl = document.getElementById('total-price');
         const hamperOrderButton = document.getElementById('hamper-order');
         const hamperCountValue = document.getElementById('hamper-count-value');
+        const comboGrid = document.getElementById('combo-grid');
+
+        function renderReadyMadeHampers() {
+            comboGrid.innerHTML = readyMadeHampers.map((combo, index) => {
+                const itemNames = combo.items
+                    .map((id) => hamperCatalog.find((item) => item.id === id)?.name)
+                    .filter(Boolean)
+                    .join(' · ');
+                const status = combo.soldOut ? 'Sold out' : 'Ready to order';
+                const action = combo.soldOut
+                    ? '<span class="combo-status">Currently unavailable</span>'
+                    : `<button class="btn-primary full-width-order" type="button" data-combo-index="${index}">Load this hamper</button>`;
+                return `
+                    <article class="combo-card ${combo.soldOut ? 'sold-out' : ''}">
+                        <img class="combo-card-image" src="${combo.image}" alt="${combo.name}">
+                        <span class="combo-status">${status}</span>
+                        <h3>${combo.name}</h3>
+                        <p>${itemNames || 'A finished festive box photographed from the current collection.'}</p>
+                        ${action}
+                    </article>
+                `;
+            }).join('');
+        }
 
         function renderHamperItems() {
             hamperBuilder.innerHTML = hamperCatalog.map((item) => {
@@ -4436,6 +4463,18 @@
             renderSummary();
         });
 
+        comboGrid.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-combo-index]');
+            if (!button) return;
+
+            const combo = readyMadeHampers[Number(button.dataset.comboIndex)];
+            selectedItems.clear();
+            combo.items.forEach((id) => selectedItems.set(id, 1));
+            renderHamperItems();
+            renderSummary();
+            document.getElementById('builder')?.scrollIntoView({ behavior: 'smooth' });
+        });
+
         selectedItemsContainer.addEventListener('click', (event) => {
             const button = event.target.closest('[data-quantity-action]');
             if (!button) return;
@@ -4482,6 +4521,7 @@
         });
 
         renderHamperItems();
+        renderReadyMadeHampers();
         renderSummary();
     </script>
 </body>
