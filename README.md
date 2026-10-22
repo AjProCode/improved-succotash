@@ -15,6 +15,11 @@ Bake Me A Wish is designed to feel warm, premium, and celebratory. The page high
 - Interactive hamper builder for selecting treats and placing orders with packaging details included
 - Responsive layout for mobile and desktop screens
 - Direct WhatsApp ordering links for quick customer conversion
+- Vercel Web Analytics integration
+- Optional playing cards at ₹250 per deck and festive diyas at ₹80 per diya
+- Premium packaging upgrade at ₹400
+- Ready-made hamper combinations with one-tap ordering
+- Sold-out hamper cards with their latest product photos
 - Story, testimonial, and gallery sections to reinforce the gifting experience
 
 ## Project structure
